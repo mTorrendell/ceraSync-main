@@ -1,0 +1,15 @@
+.initial-container-info {
+   margin: 10%;
+   height: 55vh !important;
+   display: flex;
+   justify-content: center;
+ }
+ 
+ .row {
+   align-items: center !important;
+ }
+ 
+ .submit-container {
+   width: 60%;
+ }
+ 

@@ -1,0 +1,25 @@
+.initial-container-info-home {
+  margin: 10%;
+  height: 55vh !important;
+}
+
+.event {
+  padding: 50px !important;
+}
+
+.row {
+  justify-content: center !important;
+}
+
+.innerEvent {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+.themeColor {
+  color: #a96c73 !important;
+}
+
+.subscribe {
+  width: 40% !important;
+}
