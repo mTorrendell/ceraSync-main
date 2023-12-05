@@ -1,18 +1,9 @@
 import React, { useState } from "react";
 import "./styles/About.css";
 import { Link } from "react-router-dom";
-import Modal from "./Modal";
+import Modal from "./menu/Modal";
 
 function About() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
   return (
     <>
       <div className="initial-container">
@@ -20,23 +11,9 @@ function About() {
         <hr className="line"/>
         <h2 className="center mt-5 mb-5">About us</h2>
         <hr className="line"/>
-        <div className="logo" onClick={openModal}>
-          <img className="logo logoimg" src={require("./img/logo.png")} />
-        </div>
-        <div>
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <h2>MENU CONTENT</h2>
-            <Link className="link" to="/">
-              <h1 className="title-header mt-3">HOME</h1>
-            </Link>
-            <Link className="link" to="/">
-              <h1 className="title-header mt-3">CREATE EVENT</h1>
-            </Link>
-            <Link className="link" to="/about">
-              <h1 className="title-header mt-3">ABOUT</h1>
-            </Link>
-          </Modal>
-        </div>
+
+      <Modal/>
+
       </div>
 
       <div className="meet-team">
