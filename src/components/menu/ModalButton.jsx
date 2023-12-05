@@ -1,11 +1,15 @@
 import React from "react";
-import "./styles/About.css";
+import "./styles/ModalButton.css";
+import logo from "../img/Logo.svg";
 
 const ModalButton = ({ openModal }) => {
 
     return (
-        <div className="logo" onClick={ openModal }>
-            <img className="logo logoimg" src={require("../img/logo.png")} />
+        <div id="logo_container" >
+            <canvas id="canvas" onClick={openModal} ></canvas>
+            <object id="logoimg" type="image/svg+xml" data={logo}>
+                Your browser does not support svg
+            </object>
         </div>
     )
 }
