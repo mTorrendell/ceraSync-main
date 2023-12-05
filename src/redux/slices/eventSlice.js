@@ -93,7 +93,7 @@ const eventSlice = createSlice({
             // updateEvent cases
             .addCase(updateEvent.fulfilled, (state, action) => {
                 for (let i = 0; i < state.events.length; i++) {
-                    if (state.events[i].id == action.payload.event.id) {
+                    if (state.events[i].id === action.payload.event.id) {
                         state.events[i] = action.payload.event;
                         break;
                     }
@@ -106,15 +106,15 @@ const eventSlice = createSlice({
             })
 
             // deleteEvent cases
-            .addCase(deleteEvent.fulfilled, (state, action) => {
+            .addCase(deleteEventById.fulfilled, (state, action) => {
                 for (let i = 0; i < state.events.length; i++) { 
-                    if (state.events[i].id == action.payload.event.id) {
+                    if (state.events[i].id === action.payload.event.id) {
                         state.events.splice(i, 1); 
                         break;
                     }
                 }
             })
-            .addCase(deleteEvent.rejected, (state, action) => {
+            .addCase(deleteEventById.rejected, (state, action) => {
                 console.log(action.payload);
                 state.isError = true;
                 state.errorMsg = "Failed to delete event";
