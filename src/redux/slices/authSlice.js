@@ -93,6 +93,6 @@ export const selectIsLogged      = (state) => state.auth.isLogged;
 export const selectIsEmailExists = (state) => state.auth.isEmailExists;
 export const selectCurrEmail     = (state) => state.auth.currEmail;
 export const selectIsError       = (state) => state.auth.isError;
-export const selectErrorMsh      = (state) => state.auth.errorMsg;
+export const selectErrorMsg      = (state) => state.auth.errorMsg;
 
 export default authSlice.reducer;
