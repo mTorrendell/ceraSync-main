@@ -1,29 +1,17 @@
 import React, { useState } from "react";
-import ModalButton from "./ModalButton";
-import "./styles/About.css";
-import "./ModalButton";
-import LoginModal from "../auth/modalAuth";
+import ModalButton from "../menu/ModalButton";
+import "../styles/About.css";
 
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Modal = () => {
+const ModalAuth = ({ open }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
+  console.log(open);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const login = () => {
-    if (!loginOpen) {
-      setIsModalOpen(false);
-      setLoginOpen(true);
-    } else {
-      setIsModalOpen(true);
-      setLoginOpen(true);
-    }
-  };
-
-  const menu = () => {
-    return (
+    return open ? (
       <div className="modal-overlay" onClick={closeModal}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <span className="close-button" onClick={closeModal}>
@@ -35,31 +23,31 @@ const Modal = () => {
             <Link className="link" to="/">
               <h1 className="title-header mt-3">HOME</h1>
             </Link>
-            <Link className="link" to="/create">
+            <Link className="link" to="/">
               <h1 className="title-header mt-3">CREATE EVENT</h1>
             </Link>
             <Link className="link" to="/about">
               <h1 className="title-header mt-3">ABOUT US</h1>
             </Link>
-
-            <h1 className="title-header mt-3" onClick={login}>
-              LOGIN
-            </h1>
+            <Link className="link" to="/about">
+              <h1 className="title-header mt-3">LOGIN</h1>
+            </Link>
           </div>
         </div>
-        <LoginModal open={loginOpen} />
       </div>
+    ) : (
+      <></>
     );
   };
 
-  const menuController = () => (isModalOpen ? menu() : null);
+  const loginController = () => (isModalOpen ? login() : null);
 
   return (
     <>
       <ModalButton openModal={openModal} />
-      {menuController()}
+      {loginController()}
     </>
   );
 };
 
-export default Modal;
+export default ModalAuth;

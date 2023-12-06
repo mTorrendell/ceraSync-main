@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./menu/Modal";
+import LoginModal from "./auth/modalAuth";
+import Subscription from "./Subscription";
 import "./styles/Home.css";
 // import axios from "axios";
 // import { useSelector } from "react-redux";
@@ -41,25 +43,20 @@ function Home() {
   //     setEvents(response.data);
   //   },
   // };
-  
+
   return (
     <>
       <div className="initial-container-info-home">
         <h4 className="center mb-5">CERAMIC EVENT PLATFORM </h4>
         <hr className="line" />
-        <h2 className="center mt-5 mb-5">
+        <h2 className="center home-des ">
           Discover ceramic events, workshops and serene artistry
         </h2>
-      <hr className="line" />
-
-        <Modal/>
-
+        <hr className="line" />
+        <Modal />
       </div>
-
       <div className="row ">
-
         <div className="col-md-6 event text-start themeColor">
-
           <div className="row innerEvent">
             <h2>Have you ever questioned what to do with burned ceramics?</h2>
           </div>
@@ -71,87 +68,60 @@ function Home() {
           <hr className="lineEvent p-2" />
 
           <div className="row d-flex innerEvent">
-            <h6 className="col-med-5 innerEvent">
-                Where
-            </h6>
-            <h6 className="col-med-5 ">
-                This is the location
-            </h6>
+            <h5 className="bold col-3 innerEvent">Where</h5>
+            <h5 className="col-9 ">Lohmühlenstraße 65, 12435 Berlin</h5>
           </div>
-
           <div className="row d-flex innerEvent">
-            <h6 className="col-med-5 innerEvent">
-                When
-            </h6>
-            <h6 className="col-med-5 d-flex flex-wrap ">
-                This is the date
-            </h6>
+            <h5 className="bold col-3 innerEvent">When</h5>
+            <h5 className="col-9 d-flex flex-wrap ">
+              Friday, December 15, 11AM - 16PM
+            </h5>
           </div>
-
-          <button>Check it out</button>
-
+          <div className="button">Check it out</div>
         </div>
-
         <div className="col-md-6">
           <img src={require("./img/ceramic event.jpeg")} />
         </div>
-
       </div>
-
       <div className="row ">
-
         <div className="col-md-6">
           <img className="ceramicPhoto" src={require("./img/ceramic.jpeg")} />
         </div>
 
         <div className="col-md-6 event text-end themeColor">
-
           <div className="row innerEvent">
-            <h2>Have you ever questioned what to do with burned ceramics?</h2>
+            <h2>Lets get together and enjoy pottery</h2>
           </div>
 
           <hr className="lineEvent p-2" />
           <div className="row">
-            <h1>Educational Event on how to recycle ceramics</h1>
+            <h1>Pottery and Wine</h1>
           </div>
           <hr className="lineEvent p-2" />
 
           <div className="row d-flex innerEvent">
-            <h6 className="col-med-5 innerEvent">
-                Where
-            </h6>
-            <h6 className="col-med-5 ">
-                This is the location
-            </h6>
+            <h5 className="bold col-3 innerEvent d-flex align-items-start">
+              Where
+            </h5>
+            <h5 className="col-9 d-flex align-items-start">
+              Lohmühlenstraße 65, 12435 Berlin
+            </h5>
           </div>
 
           <div className="row d-flex innerEvent">
-            <h6 className="col-med-5 innerEvent">
-                When
-            </h6>
-            <h6 className="col-med-5 d-flex flex-wrap ">
-              This is the location
-            </h6>
+            <h5 className="bold col-3 innerEvent d-flex align-items-start">
+              When
+            </h5>
+            <h5 className="col-9 d-flex align-items-start">
+              Friday, December 15, 2023, 7 PM
+            </h5>
           </div>
 
-          <button>Check it out</button>
-
+          <div className="button">Check it out</div>
         </div>
 
         <hr className="m-4" />
-        <div className="row outerContainer subscribe center">
-
-          <h2 className="col-12">
-            Want to be updated about new events? Subscribe for our newsletter!
-          </h2>
-
-          <input
-            className="m-4 col-12"
-            placeholder="Enter your email..."
-          ></input>
-
-          <button className="col-12 m-5">Subscribe</button>
-        </div>
+        <Subscription />
       </div>
     </>
   );

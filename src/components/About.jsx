@@ -7,15 +7,12 @@ function About() {
   return (
     <>
       <div className="initial-container">
-        <h6 className="center mb-5">Meet our team</h6>
-        <hr className="line"/>
+        <h4 className="center mb-5">Meet our team</h4>
+        <hr className="line" />
         <h2 className="center mt-5 mb-5">About us</h2>
-        <hr className="line"/>
-
-      <Modal/>
-
+        <hr className="line" />
+        <Modal />
       </div>
-
       <div className="meet-team">
         <h2 className="center mb-5">Meet our team</h2>
         <div className="row">

@@ -1,15 +1,33 @@
 .initial-container-info {
-   margin: 10%;
-   height: 55vh !important;
-   display: flex;
-   justify-content: center;
- }
- 
- .row {
-   align-items: center !important;
- }
- 
- .submit-container {
-   width: 60%;
- }
- 
+  margin: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  align-items: center !important;
+}
+
+.submit-container {
+  width: 60%;
+}
+
+.button {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  background-color: #cda9ad;
+  width: fit-content !important;
+  font-weight: bolder;
+  font-size: 15px;
+  color: #e8e3dc;
+  border-radius: 8%;
+}
+
+.input-group {
+  padding-left: 0px !important;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
