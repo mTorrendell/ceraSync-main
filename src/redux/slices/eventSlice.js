@@ -22,6 +22,7 @@ const initialState = {
 };
 
 export const getAllEvents = createAsyncThunk("store/getAllEvents", async () => {
+    console.log("performing req");
     const response = await baseURL.get("/public/get_all_events");
     return response.data;
 });
