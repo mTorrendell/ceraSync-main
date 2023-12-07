@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/Header.css";
 import Subscription from "./Subscription";
 import "./styles/Event.css";
 
-function Header() {
+function Event() {
   return (
     <>
       <div className="row ">
@@ -64,4 +63,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Event;

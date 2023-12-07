@@ -1,0 +1,9 @@
+
+.line {
+    margin: 0;
+    border-width: 5px;
+    border-radius: 3px;
+    width: 100%;
+    border-color: #514c46;
+    background-color: #514c46;
+}
