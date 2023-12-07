@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles/EventHomeL.css";
 
-import image2 from "../img/ceramic event.jpeg"
 import Line from "../common/Line"
-import { imageToBase64, base64ToImage } from "../../util/ImageConverter";
+import { base64ToImage } from "../../util/ImageConverter";
 
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -45,7 +44,6 @@ function EventHomeL({ eventObj }) {
             </h2>
         </div>
 
-        
         <Line/>
           <div className="event_text_container">
             <h1 id="title" >

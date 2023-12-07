@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch }   from "react-redux";
-import { selectAllEvents, getAllEvents } from "../../redux/slices/eventSlice";
 
 import "./styles/EventHomeR.css";
-import image from "../img/image_couple.png";
 import Line from "../common/Line";
 
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { imageToBase64, base64ToImage } from "../../util/ImageConverter";
+import { base64ToImage } from "../../util/ImageConverter";
 
 const theme = createTheme({
     palette: {
