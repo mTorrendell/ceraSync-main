@@ -28,7 +28,7 @@ export const getAllEvents = createAsyncThunk("store/getAllEvents", async () => {
 
 export const getEventById = createAsyncThunk("store/getEventById", async (id) => {
     const response = await baseURL.get(`/public/get_event_by_id?id=${id}`);
-    return response.data;
+    return await response.data;
 });
 
 export const addEvent = createAsyncThunk("store/addEvent", async (event) => {
