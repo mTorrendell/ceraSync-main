@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Subscription from "./Subscription";
 import "./styles/Event.css";
 import { useDispatch } from "react-redux";
+
 import { getEventById } from "../redux/slices/eventSlice";
 
 function Event() {
@@ -11,8 +12,9 @@ function Event() {
   // const params = useParams();
   //Activate the params once the navigate URL is set
   useEffect(() => {
-    dispatch(getEventById(3))
+    dispatch(getEventById(6))
       .then((response) => {
+        console.log(response);
         const data = response.payload.event;
         console.log(data);
         setEvent(data);
@@ -21,11 +23,12 @@ function Event() {
         console.error("Error:", error);
       });
   }, []);
+  
 
   return event ? (
     <>
       <div className="row ">
-        <div className="col-md-5 image-container">
+        <div className="col-md-5 p-5 image-container">
           <img
             className="ceramicPhoto"
             alt="foto"
@@ -33,7 +36,7 @@ function Event() {
           />
         </div>
 
-        <div className="col-md-7 event text-start themeColor">
+        <div className="col-md-7 p-4 event text-start themeColor">
           <div className="row innerEvent">
             <h2>{event.title}</h2>
           </div>

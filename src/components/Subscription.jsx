@@ -13,8 +13,8 @@ const Subscription = () => {
         <h3 className="col-12">
           Want to be updated about new events? Subscribe for our newsletter!
         </h3>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend"></div>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend"></div>
           <input
             className="col-12 send-back form-control"
             id="input"

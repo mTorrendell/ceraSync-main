@@ -8,7 +8,7 @@ baseURL.interceptors.request.use(
         const token = localStorage.getItem("CERASYNC_JWT_TOKEN");
         if (token) config.headers["Authorization"] = `Bearer ${token}`;
         return config;
-    }, 
+    },
     (error) => {
         Promise.reject(error);
     }
@@ -43,7 +43,7 @@ export const updateEvent = createAsyncThunk("store/updateEvent", async (event) =
 
 export const deleteEventById = createAsyncThunk("store/deleteEventById", async (id) => {
     const response = await baseURL.delete(`/delete_event?id=${id}`);
-    return response.data; 
+    return response.data;
 });
 
 const eventSlice = createSlice({
@@ -54,7 +54,7 @@ const eventSlice = createSlice({
             state.currentEvent = action.payload;
         },
         setErrorEvents(state, action) {
-            state.isError  = action.payload.isError;
+            state.isError = action.payload.isError;
             state.errorMsg = action.payload.errorMsg;
         }
     },
@@ -107,9 +107,9 @@ const eventSlice = createSlice({
 
             // deleteEvent cases
             .addCase(deleteEventById.fulfilled, (state, action) => {
-                for (let i = 0; i < state.events.length; i++) { 
+                for (let i = 0; i < state.events.length; i++) {
                     if (state.events[i].id === action.payload.event.id) {
-                        state.events.splice(i, 1); 
+                        state.events.splice(i, 1);
                         break;
                     }
                 }
@@ -118,18 +118,18 @@ const eventSlice = createSlice({
                 console.log(action.payload);
                 state.isError = true;
                 state.errorMsg = "Failed to delete event";
-            });      
+            });
     }
 });
 
-export const { 
-    setCurrentEvent, 
-    setErrorEvents 
+export const {
+    setCurrentEvent,
+    setErrorEvents
 } = eventSlice.actions;
 
-export const selectAllEvents    = (state) => state.store.events;
-export const selectCurrentEvent = (state) => state.store.currentEvent; 
-export const selectIsError      = (state) => state.store.isError;
-export const selectErrorMsg     = (state) => state.store.errorMsg;
+export const selectAllEvents = (state) => state.store.events;
+export const selectCurrentEvent = (state) => state.store.currentEvent;
+export const selectIsError = (state) => state.store.isError;
+export const selectErrorMsg = (state) => state.store.errorMsg;
 
 export default eventSlice.reducer;
