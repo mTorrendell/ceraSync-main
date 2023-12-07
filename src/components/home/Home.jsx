@@ -24,11 +24,6 @@ function Home() {
         }
     }, [dispatch]);
 
-    if (!events) {
-        return <div>Loading...</div>;
-    }
-
-
     return (
         <div id="home-container">
             <InfoHome/>
@@ -36,7 +31,7 @@ function Home() {
             {events.map((event, i) => i%2===0 ? 
                 (<EventHomeL eventObj={event}/>) : 
                 (<EventHomeR eventObj={event}/>))}
-                
+
             <Line />
             <Subscription />
             <Modal />
