@@ -1,0 +1,27 @@
+
+#home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.themeColor {
+  color: #a96c73 !important;
+}
+
+
+.button {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  background-color: #C4989D;
+  width: fit-content !important;
+  padding: 8px;
+  font-weight: bolder;
+  font-size: 15px;
+  color: #e8e3dc;
+  border-radius: 8%;
+}
+
+.bold{
+  font-weight: bolder;
+}
