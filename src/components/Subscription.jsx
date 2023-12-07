@@ -15,7 +15,7 @@ const Subscription = () => {
       <div class="input-group mb-3">
         <div class="input-group-prepend"></div>
         <input
-          className="col-12 form-control"
+          className="col-12 send-back form-control"
           id="input"
           type="text"
           value={inputValue}

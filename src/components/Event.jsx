@@ -1,10 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import "./styles/Header.css";
 import Subscription from "./Subscription";
 import "./styles/Event.css";
+import { useDispatch } from "react-redux";
+import { getEventById } from "../redux/slices/eventSlice";
 
-function Header() {
+function Event() {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const [event, setEvent] = useState(null);
+
+  useEffect(() => {
+    const response = dispatch(getEventById(params.id));
+    setEvent(response);
+  }, [params]);
+
   return (
     <>
       <div className="row ">
@@ -64,4 +75,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Event;

@@ -10,23 +10,6 @@ function Event() {
 
   // const [event, setEvent] = useState(null);
 
-  // useEffect(() => {
-  //   async function getEvent() {
-  //     try {
-  //       const response = await axios({
-  //         method: "GET",
-  //         url: `${process.env.REACT_APP_API_URL}/event/${params.slug}`,
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       });
-  //       if (response.data !== "The Event does not exist") {
-  //         setEvent(response.data);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   getEvent();
-  // }, []);
   return (
     <>
       <div className="initial-container-info container">

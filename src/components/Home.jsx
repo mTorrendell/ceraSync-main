@@ -120,7 +120,7 @@ function Home() {
           <div className="button">Check it out</div>
         </div>
 
-        <hr className="m-4" />
+        <hr className="m-4 sendBack" />
         <Subscription />
       </div>
     </>
