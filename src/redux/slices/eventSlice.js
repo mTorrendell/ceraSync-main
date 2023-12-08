@@ -6,7 +6,7 @@ const baseURL = axios.create({ baseURL: "http://cerasync-back-49c53729469a.herok
 baseURL.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("CERASYNC_JWT_TOKEN");
-        //const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlcm1lckB0ZXN0LmNvbSIsImlhdCI6MTcwMTk2MjI4OCwiZXhwIjoxNzAxOTY1MTY4fQ.Mh6HY4mwbHIar-6Mo_kJgmCcynHAVn29SLDzRgu0tu4'
+        // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlcm1lckB0ZXN0LmNvbSIsImlhdCI6MTcwMTk2MjIzMCwiZXhwIjoxNzAxOTY1MTEwfQ.S2pECzku7MFP_9tocQfXPHCtfoquovdbDL_MftClVNk'
         if (token) config.headers["Authorization"] = `Bearer ${token}`;
         return config;
     },

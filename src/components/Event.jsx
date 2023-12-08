@@ -1,39 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Subscription from "./Subscription";
+import { base64ToImage } from "../util/ImageConverter.js";
+
 import "./styles/Event.css";
 import { useDispatch } from "react-redux";
-
+import ReactLoading from "react-loading";
 import { getEventById } from "../redux/slices/eventSlice";
 
 function Event() {
   const [event, setEvent] = useState(null);
+  const [imageConverted, setImageConverted] = useState(null);
   const dispatch = useDispatch();
-  // const params = useParams();
-  //Activate the params once the navigate URL is set
+  const params = useParams();
+
   useEffect(() => {
-    dispatch(getEventById(6))
+    dispatch(getEventById(params.id))
       .then((response) => {
-        console.log(response);
         const data = response.payload.event;
-        console.log(data);
+
         setEvent(data);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }, []);
-  
+
+  useEffect(() => {
+    const loadImage = async () => {
+      try {
+        const img = await base64ToImage(event.imageData);
+        console.log(event);
+        setImageConverted(img);
+      } catch (error) {
+        console.error("Error loading image:", error);
+      }
+    };
+    loadImage();
+  }, [event]);
 
   return event ? (
     <>
       <div className="row ">
         <div className="col-md-5 p-5 image-container">
-          <img
-            className="ceramicPhoto"
-            alt="foto"
-            src={require("./img/ceramic.jpeg")}
-          />
+          <div >
+            {imageConverted ? (
+              <img
+                className="ceramicPhoto"
+                src={imageConverted.src}
+                alt="Event"
+              />
+            ) : (
+              <ReactLoading
+                className="m-2 p-5"
+                type={"bubbles"}
+                color={"#B28484"}
+                height={"10%"}
+                width={"10%"}
+              />
+            )}
+          </div>
         </div>
 
         <div className="col-md-7 p-4 event text-start themeColor">
@@ -72,7 +98,16 @@ function Event() {
       </div>
     </>
   ) : (
-    <></>
+    <div className="d-flex justify-content-center align-items-center f">
+      {" "}
+      <ReactLoading
+        className="m-2 p-5"
+        type={"bubbles"}
+        color={"#B28484"}
+        height={"25%"}
+        width={"20%"}
+      />
+    </div>
   );
 }
 

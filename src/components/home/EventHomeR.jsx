@@ -44,25 +44,23 @@ function EventHomeR({ eventObj }) {
 
       <div id="event_info_container_r" className="themeColor">
         <div className="event_text_container_r">
-            <h2 id="short_description">
-                {eventObj.shorDescription}
-            </h2>
+          <h2 id="short_description">{eventObj.shorDescription}</h2>
         </div>
 
-        <Line/>
-          <div className="event_text_container_r">
-            <h1 id="title" >
-                {eventObj.title}
-            </h1>
-          </div>
-        <Line/>
+        <Line />
+        <div className="event_text_container_r">
+          <h1 id="title">{eventObj.title}</h1>
+        </div>
+        <Line />
 
         <div className="two_in_row">
           <div className="two_in_row_text_container_r">
             <h5 className="bold when-where">Where</h5>
           </div>
           <div className="two_in_row_text_container_r">
-            <h5 className="meta_data">{eventObj.location}</h5>
+            <h5 className="meta_data">
+                {eventObj.location}
+            </h5>
           </div>
         </div>
 
@@ -71,7 +69,9 @@ function EventHomeR({ eventObj }) {
             <h5 className="bold when-where">When</h5>
           </div>
           <div className="two_in_row_text_container_r">
-            <h5 className="meta_data">{eventObj.dateTime}</h5>
+            <h5 className="meta_data">
+                {eventObj.dateTime}
+            </h5>
           </div>
         </div>
 

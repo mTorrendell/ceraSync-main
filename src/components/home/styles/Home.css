@@ -1,19 +1,21 @@
-
 #home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .themeColor {
   color: #a96c73 !important;
 }
 
+.f {
+  height: 100vh;
+}
 
 .button {
   margin-bottom: 30px;
   margin-top: 10px;
-  background-color: #C4989D;
+  background-color: #c4989d;
   width: fit-content !important;
   padding: 8px;
   font-weight: bolder;
@@ -22,6 +24,6 @@
   border-radius: 8%;
 }
 
-.bold{
+.bold {
   font-weight: bolder;
 }
