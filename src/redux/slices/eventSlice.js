@@ -5,8 +5,12 @@ const baseURL = axios.create({ baseURL: "http://cerasync-back-49c53729469a.herok
 
 baseURL.interceptors.request.use(
     (config) => {
+        //localStorage.setItem("CERASYNC_JWT_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlckB0ZXN0LmNvbSIsImlhdCI6MTcwMjA1ODI3NCwiZXhwIjoxNzAyMDYxMTU0fQ.4MaI_aSQqkjHi5pEdWTWKEdWOvVrBkuaw0HyD8IDn7Q");
+        /* 
+            Uncomment upper string if you want to test the login required acitons
+            AND go to postman, make auth req, and paste the response here
+        */
         const token = localStorage.getItem("CERASYNC_JWT_TOKEN");
-        // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlcm1lckB0ZXN0LmNvbSIsImlhdCI6MTcwMTk2MjIzMCwiZXhwIjoxNzAxOTY1MTEwfQ.S2pECzku7MFP_9tocQfXPHCtfoquovdbDL_MftClVNk'
         if (token) config.headers["Authorization"] = `Bearer ${token}`;
         return config;
     },
@@ -63,7 +67,7 @@ const eventSlice = createSlice({
         builder
             // getAllEvents cases
             .addCase(getAllEvents.fulfilled, (state, action) => {
-                state.events = state.events.concat(action.payload.events);
+                state.events = action.payload.events;
             })
             .addCase(getAllEvents.rejected, (state, action) => {
                 console.log(action.payload);

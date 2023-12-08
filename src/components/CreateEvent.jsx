@@ -4,22 +4,38 @@ import "./styles/Event.css";
 // import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addEvent } from "../redux/slices/eventSlice";
+import { imageToBase64 } from "../util/ImageConverter";
 
 function Event() {
   const [event, setEvent] = useState(null);
+  const [b64str, setB64str] = useState(null);
 
   //NICK: the state that helps prevent errors
   const [correctlyAdded, setCorrectlyAdded] = useState(false);
   const dispatch = useDispatch();
 
-  const handle = {
-    createEvent: () => {
-      // const formData = new FormData(e);
 
-      //NICK: If passing directly the object does not work try using the FormData!!
-      const response = dispatch(addEvent(event));
-      console.log("This is response", response);
-    },
+  const handleFileChange = async (event) => {
+    try {
+      const file = event.target.files[0];
+
+      if (file) {  
+        const base64String = await imageToBase64(file);
+        setB64str(base64String);
+      }
+    } catch (error) {
+      console.error('Error handling file change:', error);
+    }
+  };
+
+  const handleSubmit = async () => {
+      event.imageData = b64str;
+      try {
+        console.log(event);
+        dispatch(addEvent(event));
+      } catch {
+        console.error("error");
+      }
   };
 
   useEffect(() => {
@@ -33,10 +49,11 @@ function Event() {
         <form
           id="newProductForm"
           onSubmit={(e) => {
-            // e.preventDefault();
+            e.preventDefault();
+            handleSubmit();
             // handle.createEvent(e.target);
-            handle.createEvent();
-            console.log("e", e.target);
+            //handle.createEvent();
+            //console.log("e", e.target);
           }}
         >
           <div className="center row submit-container">
@@ -149,7 +166,7 @@ function Event() {
                   setEvent((current) => {
                     return {
                       ...current,
-                      fullDes: e.target.value,
+                      fullDesc: e.target.value,
                     };
                   });
                 }}
@@ -159,6 +176,7 @@ function Event() {
               <div className="custom-file">
                 <input
                   type="file"
+                  onChange={handleFileChange}
                   className="custom-file-input"
                   id="inputGroupFile01"
                 />

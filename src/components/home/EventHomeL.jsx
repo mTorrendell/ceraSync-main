@@ -37,12 +37,12 @@ function EventHomeL({ eventObj }) {
   return (
     <div id="event_container_l">
       <div id="event_info_container_l" className="themeColor">
-        <div className="event_text_container">
+        <div className="event_text_container_l">
           <h2 id="short_description">{eventObj.shorDescription}</h2>
         </div>
 
         <Line />
-        <div className="event_text_container">
+        <div className="event_text_container_l">
           <h1 id="title">{eventObj.title}</h1>
         </div>
         <Line />
@@ -65,7 +65,7 @@ function EventHomeL({ eventObj }) {
           </div>
         </div>
 
-        <div className="event_text_container">
+        <div className="event_text_container_l">
           <ThemeProvider theme={theme}>
             <Button
               size="large"
