@@ -47,20 +47,20 @@ function EventHomeL({ eventObj }) {
         </div>
         <Line />
 
-        <div className="two_in_row">
-          <div className="event_text_container">
+        <div className="two_in_row_l">
+          <div className="when-where_container_l">
             <h5 className="bold when-where">Where</h5>
           </div>
-          <div className="event_text_container">
+          <div className="meta_data_container_l">
             <h5 className="meta_data">{eventObj.location}</h5>
           </div>
         </div>
 
-        <div className="two_in_row">
-          <div className="event_text_container">
+        <div className="two_in_row_l">
+          <div className="when-where_container_l">
             <h5 className="bold when-where">When</h5>
           </div>
-          <div className="event_text_container">
+          <div className="meta_data_container_l">
             <h5 className="meta_data">{eventObj.dateTime}</h5>
           </div>
         </div>

@@ -132,7 +132,7 @@ function Event() {
                   setEvent((current) => {
                     return {
                       ...current,
-                      shorDescription: e.target.value,
+                      shortDesc: e.target.value,
                     };
                   });
                 }}
@@ -144,12 +144,12 @@ function Event() {
                 className="form-control"
                 aria-label="With textarea"
                 placeholder="Description"
-                defaultValue={event ? event.fullDescription : ""}
+                defaultValue={event ? event.fullDesc : ""}
                 onChange={(e) => {
                   setEvent((current) => {
                     return {
                       ...current,
-                      fullDescription: e.target.value,
+                      fullDes: e.target.value,
                     };
                   });
                 }}
