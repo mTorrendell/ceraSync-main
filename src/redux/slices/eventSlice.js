@@ -67,7 +67,7 @@ const eventSlice = createSlice({
         builder
             // getAllEvents cases
             .addCase(getAllEvents.fulfilled, (state, action) => {
-                state.events = state.events.concat(action.payload.events);
+                state.events = action.payload.events;
             })
             .addCase(getAllEvents.rejected, (state, action) => {
                 console.log(action.payload);
