@@ -19,9 +19,8 @@ function Event() {
     try {
       const file = event.target.files[0];
 
-      if (file) {
-        const blob = await file.arrayBuffer();
-        const base64String = await imageToBase64(blob);
+      if (file) {  
+        const base64String = await imageToBase64(file);
         setB64str(base64String);
       }
     } catch (error) {
@@ -30,17 +29,13 @@ function Event() {
   };
 
   const handleSubmit = async () => {
-      // const formData = new FormData(e);
       event.imageData = b64str;
-      //NICK: If passing directly the object does not work try using the FormData!!
       try {
         console.log(event);
         dispatch(addEvent(event));
       } catch {
         console.error("error");
       }
-      //console.log("This is response", response);
-
   };
 
   useEffect(() => {
@@ -171,7 +166,7 @@ function Event() {
                   setEvent((current) => {
                     return {
                       ...current,
-                      fullDes: e.target.value,
+                      fullDesc: e.target.value,
                     };
                   });
                 }}
