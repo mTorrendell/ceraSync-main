@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import "./styles/EventHomeR.css";
-import image from "../img/image_couple.png";
 import Line from "../common/Line";
 
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { base64ToImage } from "../../util/ImageConverter";
 
 const theme = createTheme({
     palette: {
@@ -17,28 +18,42 @@ const theme = createTheme({
     },
   });
 
-function EventHomeR() {
-    return (      
+function EventHomeR({ eventObj }) {
+    const [imageConverted, setImageConverted] = useState(null);
 
-      
+    useEffect(() => {
+      const loadImage = async () => {
+        try {
+          const img = await base64ToImage(eventObj.imageData);
+          setImageConverted(img);
+        } catch (error) {
+          console.error('Error loading image:', error);
+        }
+      };
+      loadImage();
+    }, []);
+   
+
+    return (         
     <div id="event_container_r">
         
        <div id="event_image_container_r" >
-        <img id="event_image" src={image} />
-      </div>
+        {imageConverted && <img id="event_image" src={imageConverted.src} alt="Event" />} 
+       </div>
 
       <div id="event_info_container_r" className="themeColor">
 
         <div className="event_text_container_r">
             <h2 id="short_description">
-                Have you ever questioned what to do with burned ceramics?
+                {eventObj.shorDescription}
             </h2>
         </div>
 
-        
         <Line/>
           <div className="event_text_container_r">
-            <h1 id="title" >Educational Event on how to recycle ceramics</h1>
+            <h1 id="title" >
+                {eventObj.title}
+            </h1>
           </div>
         <Line/>
 
@@ -47,7 +62,9 @@ function EventHomeR() {
             <h5 className="bold when-where">Where</h5>
           </div>
           <div className="event_text_container_r">
-            <h5 className="meta_data">Lohmühlenstraße 65, 12435 Berlin</h5>
+            <h5 className="meta_data">
+                {eventObj.location}
+            </h5>
           </div>
         </div>
 
@@ -56,7 +73,9 @@ function EventHomeR() {
             <h5 className="bold when-where">When</h5>
           </div>
           <div className="event_text_container_r">
-            <h5 className="meta_data">Friday, December 15, 11AM - 16PM</h5>
+            <h5 className="meta_data">
+                {eventObj.dateTime}
+            </h5>
           </div>
         </div>
       

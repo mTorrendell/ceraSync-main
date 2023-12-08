@@ -21,6 +21,14 @@
     z-index: 1;
 }
 
+#menu_botton_text {
+    position: absolute; 
+    color: #e8e3dc;
+    font-size: 24px;
+    font-weight: 800;
+    height: 35%;
+}
+
 #logoimg {
     width: 150px; 
     height: auto; 

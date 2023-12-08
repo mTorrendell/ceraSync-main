@@ -7,30 +7,24 @@ import { addEvent } from "../redux/slices/eventSlice";
 
 function Event() {
   const [event, setEvent] = useState(null);
+
+  //NICK: the state that helps prevent errors
   const [correctlyAdded, setCorrectlyAdded] = useState(false);
   const dispatch = useDispatch();
 
   const handle = {
-    createEvent: (e) => {
-      const formData = new FormData(e);
-      const response = dispatch(addEvent(formData));
-      // console.log(formData);
+    createEvent: () => {
+      // const formData = new FormData(e);
 
-      // try {
-      //   dispatch(addEvent(formData));
-      //   // if (response.data === 409) {
-      //   //   setCorrectlyCreated("Not correctly added");
-      //   // } else if (response.status === 200) {
-      //   //   setCorrectlyCreated("Correctly added");
-      //   // }
-      // } catch (error) {
-      //   console.log(error.message);
-      // }
+      //NICK: If passing directly the object does not work try using the FormData!!
+      const response = dispatch(addEvent(event));
+      console.log("This is response", response);
     },
   };
 
   useEffect(() => {
-    //verificar que este todo bien
+    //NICK: Everytime the "event" (it is withtin the parenthesis) changes the logic here will be excecute
+    //So verify things like length of input!
   }, [event]);
 
   return (
@@ -39,8 +33,9 @@ function Event() {
         <form
           id="newProductForm"
           onSubmit={(e) => {
-            e.preventDefault();
-            handle.createEvent(e.target);
+            // e.preventDefault();
+            // handle.createEvent(e.target);
+            handle.createEvent();
             console.log("e", e.target);
           }}
         >
