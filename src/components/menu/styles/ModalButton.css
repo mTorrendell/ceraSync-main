@@ -8,6 +8,7 @@
     width: 100%;
     padding: 20px; 
     box-sizing: border-box;
+    z-index: 2;
 }
 
 #logo_container:hover{
@@ -32,4 +33,8 @@
 #logoimg {
     width: 150px; 
     height: auto; 
+}
+
+.login:hover{
+    cursor: pointer;
 }

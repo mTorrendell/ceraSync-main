@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectAllEvents, getAllEvents } from "../../redux/slices/eventSlice";
 
 import Modal from "../menu/Modal";
-import LoginModal from "../auth/modalAuth";
+import LoginModal from "../menu/auth/modalAuth";
 import Subscription from "../Subscription";
 import EventHomeL from "./EventHomeL";
 import EventHomeR from "./EventHomeR";

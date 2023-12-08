@@ -101,7 +101,7 @@ function Event() {
     <div className="d-flex justify-content-center align-items-center f">
       {" "}
       <ReactLoading
-        className="m-2 p-5"
+        className="m-2 p-5 loading"
         type={"bubbles"}
         color={"#B28484"}
         height={"25%"}

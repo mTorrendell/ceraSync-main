@@ -28,3 +28,8 @@
 .send-back{
    z-index: -1;
 }
+
+
+.loading{
+  overflow-y: hidden !important;
+}

@@ -1,0 +1,24 @@
+.container-top {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  
+}
+
+.modal-content{
+   margin: 0px;
+}
+
+.left:hover {
+  cursor: pointer;
+}
+
+.cont{
+   flex-direction: column;
+}
+
+.form-control{
+   width:100% !important;
+}

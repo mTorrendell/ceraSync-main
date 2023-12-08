@@ -42,3 +42,7 @@ img {
 .image-container {
   padding: 0 5% 5% 5% !important;
 }
+
+.loading{
+  overflow-y: hidden !important;
+}

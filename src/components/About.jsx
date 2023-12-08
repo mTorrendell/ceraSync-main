@@ -18,31 +18,31 @@ function About() {
         <div className="row">
           <div className="profile col-md-4">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/nikita.jpeg")} />
+              <img className="profileimg" src={require("./img/nikita.jpeg")} alt="profile"/>
             </div>
             <h6>Nikita Vladimirov</h6>
           </div>
           <div className="profile col-md-4">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/tatenda.jpeg")} />
+              <img className="profileimg" src={require("./img/tatenda.jpeg")} alt="profile" />
             </div>
             <h6>Tatenda Mudavanhu</h6>
           </div>
           <div className="profile col-md-4">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/lilly.jpeg")} />
+              <img className="profileimg" src={require("./img/lilly.jpeg")} alt="profile"/>
             </div>
             <h6>Lilly Wallawitsch</h6>
           </div>
           <div className="profile col-md-6 justify-content-center">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/ava.jpeg")} />
+              <img className="profileimg" src={require("./img/ava.jpeg")} alt="profile" />
             </div>
             <h6>Ava Hurst</h6>
           </div>
           <div className="profile col-md-6">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/mercedes.jpg")} />
+              <img className="profileimg" src={require("./img/mercedes.jpg")} alt="profile"/>
             </div>
             <h6>Mercedes Torrendell</h6>
           </div>
