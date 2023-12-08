@@ -5,6 +5,7 @@ import Line from "../common/Line";
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { base64ToImage } from "../../util/ImageConverter";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -19,6 +20,8 @@ const theme = createTheme({
 
 function EventHomeR({ eventObj }) {
   const [imageConverted, setImageConverted] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const loadImage = async () => {
       try {
@@ -70,7 +73,14 @@ function EventHomeR({ eventObj }) {
 
         <div className="event_text_container_r">
           <ThemeProvider theme={theme}>
-            <Button size="large" color="coral" variant="contained">
+            <Button
+              size="large"
+              color="coral"
+              variant="contained"
+              onClick={() => {
+                navigate(`/event/${eventObj.id}`);
+              }}
+            >
               {" "}
               <div className="text_button">Check it out</div>
             </Button>
