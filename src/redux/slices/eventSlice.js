@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURL = axios.create({ baseURL: "http://cerasync-back-49c53729469a.herokuapp.com/api/events" });
+const baseURLPublic = axios.create({ baseURL: "http://cerasync-back-49c53729469a.herokuapp.com/api/events/public" });
+const baseURL = axios.create({ baseURL: "http://cerasync-back-49c53729469a.herokuapp.com/api/events/" });
 
 baseURL.interceptors.request.use(
     (config) => {
@@ -27,12 +28,12 @@ const initialState = {
 };
 
 export const getAllEvents = createAsyncThunk("store/getAllEvents", async () => {
-    const response = await baseURL.get("/public/get_all_events");
+    const response = await baseURLPublic.get("/get_all_events");
     return response.data;
 });
 
 export const getEventById = createAsyncThunk("store/getEventById", async (id) => {
-    const response = await baseURL.get(`/public/get_event_by_id?id=${id}`);
+    const response = await baseURLPublic.get(`/get_event_by_id?id=${id}`);
     return await response.data;
 });
 
