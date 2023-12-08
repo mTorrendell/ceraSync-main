@@ -3,27 +3,24 @@ import { Link, useParams } from "react-router-dom";
 import Subscription from "./Subscription";
 import "./styles/Event.css";
 import { useDispatch } from "react-redux";
-
+import ReactLoading from "react-loading";
 import { getEventById } from "../redux/slices/eventSlice";
 
 function Event() {
   const [event, setEvent] = useState(null);
   const dispatch = useDispatch();
-  // const params = useParams();
-  //Activate the params once the navigate URL is set
+  const params = useParams();
   useEffect(() => {
-    dispatch(getEventById(6))
+    dispatch(getEventById(params.id))
       .then((response) => {
-        console.log(response);
         const data = response.payload.event;
-        console.log(data);
+
         setEvent(data);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }, []);
-  
 
   return event ? (
     <>
@@ -72,7 +69,16 @@ function Event() {
       </div>
     </>
   ) : (
-    <></>
+    <div className="d-flex justify-content-center align-items-center f">
+      {" "}
+      <ReactLoading
+        className="m-2 p-5"
+        type={"bubbles"}
+        color={"#B28484"}
+        height={"25%"}
+        width={"20%"}
+      />
+    </div>
   );
 }
 
