@@ -4,6 +4,9 @@
   padding:20px
 }
 
+.outerContainer{
+  width:40%
+}
 #input {
   padding: 5px 10px 5px 10px;
   margin: 20px;

@@ -1,67 +1,78 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Subscription from "./Subscription";
 import "./styles/Event.css";
 import { useDispatch } from "react-redux";
+
 import { getEventById } from "../redux/slices/eventSlice";
 
 function Event() {
-  return (
+  const [event, setEvent] = useState(null);
+  const dispatch = useDispatch();
+  // const params = useParams();
+  //Activate the params once the navigate URL is set
+  useEffect(() => {
+    dispatch(getEventById(6))
+      .then((response) => {
+        console.log(response);
+        const data = response.payload.event;
+        console.log(data);
+        setEvent(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+  
+
+  return event ? (
     <>
       <div className="row ">
-        <div className="col-md-5 image-container">
-          <img className="ceramicPhoto" src={require("./img/ceramic.jpeg")} />
+        <div className="col-md-5 p-5 image-container">
+          <img
+            className="ceramicPhoto"
+            alt="foto"
+            src={require("./img/ceramic.jpeg")}
+          />
         </div>
 
-        <div className="col-md-7 event text-start themeColor">
+        <div className="col-md-7 p-4 event text-start themeColor">
           <div className="row innerEvent">
-            <h2>Educational Event on how to recycle ceramics</h2>
+            <h2>{event.title}</h2>
           </div>
 
           <hr className="lineEvent p-2" />
           <div className="row d-flex ">
             <h5 className="bold col-3 innerEvent d-flex align-items-start">
-              Where
+              When
             </h5>
-            <h5 className="col-9 d-flex align-items-start">
-              Lohmühlenstraße 65, 12435 Berlin
-            </h5>
+            <h5 className="col-9 d-flex align-items-start">{event.dateTime}</h5>
           </div>
 
           <div className="row d-flex ">
             <h5 className="bold col-3 innerEvent d-flex align-items-start">
               Where
             </h5>
-            <h5 className="col-9 d-flex align-items-start">
-              Lohmühlenstraße 65, 12435 Berlin
-            </h5>
+            <h5 className="col-9 d-flex align-items-start">{event.location}</h5>
           </div>
 
           <div className="row d-flex ">
             <h5 className="bold col-3 innerEvent d-flex align-items-start">
-              Where
+              Host
             </h5>
-            <h5 className="col-9 d-flex align-items-start">
-              Lohmühlenstraße 65, 12435 Berlin
-            </h5>
+            <h5 className="col-9 d-flex align-items-start">{event.host}</h5>
           </div>
           <hr className="lineEvent p-2" />
           <div className="row">
-            <h5>
-              Educate yourself on how to recycle ceramics with an interactive
-              body tracking computer game that our amazing ceramic enthusiast
-              Ava developed. Use your body and mind and experience the fantastic
-              science of ceramic recycling. We will fusion the old art of
-              ceramics with a futuristic high tech computer system to take a
-              step into the future.
-            </h5>
+            <h5>{event.fullDescription}</h5>
           </div>
         </div>
-
         <hr className="m-4" />
         <Subscription />
       </div>
     </>
+  ) : (
+    <></>
   );
 }
 
