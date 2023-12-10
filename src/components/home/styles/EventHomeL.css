@@ -18,7 +18,7 @@
 }
 
 #event_image {
-   height: 120vh;
+    height: 120vh;
     object-fit: cover;
 }
 
@@ -90,6 +90,14 @@
         width: 100%;
         order: 1;
     }
+
+    #event_image {
+        height: 50%;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
 
     #event_info_container_l {
         width: 100%;
