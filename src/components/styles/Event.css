@@ -46,3 +46,9 @@ img {
 .loading{
   overflow-y: hidden !important;
 }
+
+.lineEvent {
+    border-width: 5px;
+    border-radius: 3px;
+    border-color: #514c46;
+}

@@ -7,6 +7,7 @@ import "./styles/Event.css";
 import { useDispatch } from "react-redux";
 import ReactLoading from "react-loading";
 import { getEventById } from "../redux/slices/eventSlice";
+import { formatDateTime } from "../util/TimeConverter";
 
 function Event() {
   const [event, setEvent] = useState(null);
@@ -18,7 +19,6 @@ function Event() {
     dispatch(getEventById(params.id))
       .then((response) => {
         const data = response.payload.event;
-
         setEvent(data);
       })
       .catch((error) => {
@@ -30,7 +30,6 @@ function Event() {
     const loadImage = async () => {
       try {
         const img = await base64ToImage(event.imageData);
-        console.log(event);
         setImageConverted(img);
       } catch (error) {
         console.error("Error loading image:", error);
@@ -72,7 +71,7 @@ function Event() {
             <h5 className="bold col-3 innerEvent d-flex align-items-start">
               When
             </h5>
-            <h5 className="col-9 d-flex align-items-start">{event.dateTime}</h5>
+            <h5 className="col-9 d-flex align-items-start">{formatDateTime(event.dateTime)}</h5>
           </div>
 
           <div className="row d-flex ">

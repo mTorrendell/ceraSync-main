@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { base64ToImage } from "../../util/ImageConverter";
 import { useNavigate } from "react-router-dom";
+import { formatDateTime } from "../../util/TimeConverter";
 
 const theme = createTheme({
   palette: {
@@ -70,7 +71,7 @@ function EventHomeR({ eventObj }) {
           </div>
           <div className="two_in_row_text_container_r">
             <h5 className="meta_data">
-                {eventObj.dateTime}
+                {formatDateTime(eventObj.dateTime)}
             </h5>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { base64ToImage } from "../../util/ImageConverter";
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { formatDateTime } from "../../util/TimeConverter";
 
 const theme = createTheme({
   palette: {
@@ -61,7 +62,7 @@ function EventHomeL({ eventObj }) {
             <h5 className="bold when-where">When</h5>
           </div>
           <div className="meta_data_container_l">
-            <h5 className="meta_data">{eventObj.dateTime}</h5>
+            <h5 className="meta_data">{formatDateTime(eventObj.dateTime)}</h5>
           </div>
         </div>
 
