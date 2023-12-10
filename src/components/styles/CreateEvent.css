@@ -1,3 +1,15 @@
 .image-container {
   padding: 0 3% 3% 3%;
 }
+
+.newProductForm {
+  display: flex;
+  justify-content: center;
+}
+
+.nTitle {
+  font-family: "Raleway";
+  font-weight: 700;
+  font-size: 7vmin;
+  margin-bottom:40px;
+}

@@ -20,12 +20,17 @@ const Modal = () => {
     }
   };
 
+  const closeAll = () => {
+    closeModal();
+    login();
+  };
+
   const menu = () => {
     return (
       <>
-        <div className="modal-overlay" onClick={closeModal}>
+        <div className="modal-overlay" onClick={closeAll}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-button" onClick={closeModal}>
+            <span className="close-button" onClick={closeAll}>
               &times;
             </span>
 
@@ -44,7 +49,6 @@ const Modal = () => {
                   ABOUT US
                 </h1>
               </Link>
-
               <h1
                 className="title-header-modal mt-3 title-header login"
                 onClick={login}
@@ -64,7 +68,7 @@ const Modal = () => {
 
   return (
     <>
-      <ModalButton openModal={openModal} />
+      {<ModalButton openModal={openModal} />}
       {menuController()}
     </>
   );

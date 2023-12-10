@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "../styles/About.css";
 import "../styles/ModalAuth.css";
 
-import { Link } from "react-router-dom";
-
 const ModalAuth = ({ open }) => {
   const [isModalOpen, setIsModalOpen] = useState(open);
   const [inputValue, setInputValue] = useState("");
@@ -30,16 +28,20 @@ const ModalAuth = ({ open }) => {
             <h2>Welcome</h2>
             <h5>Enter your email to log in or create an account</h5>
             <input
+              required
+              type="text"
               className="col-12 form-control"
               id="input"
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder={"E-mail adress"}
+              aria-label="Default"
+              placeholder="Email adress"
               aria-describedby="inputGroup-sizing-default"
+              defaultValue={inputValue ? inputValue : ""}
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
             />
           </div>
-          <div className="col-12 button">SUBSCRIBE</div>
+          <div className="col-12 button">Continue</div>
         </div>
       </div>
     </>

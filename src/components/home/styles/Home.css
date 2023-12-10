@@ -27,3 +27,8 @@
 .bold {
   font-weight: bolder;
 }
+
+
+.over{
+  overflow-y: hidden !important;
+}

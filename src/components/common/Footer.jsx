@@ -14,7 +14,7 @@ function Footer() {
           <div className="col-3 info">Privacy Statement</div>
         </div>
         <div className="row align-items-start">
-          <div className="col bottom-info">©2023 CeraSync</div>
+          <div className="col bottom-info info">©2023 CeraSync</div>
         </div>
       </div>
     </>
