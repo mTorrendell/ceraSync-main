@@ -6,7 +6,7 @@ const baseURL = axios.create({ baseURL: "http://cerasync-back-49c53729469a.herok
 
 baseURL.interceptors.request.use(
     (config) => {
-        //localStorage.setItem("CERASYNC_JWT_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlckB0ZXN0LmNvbSIsImlhdCI6MTcwMjA1ODI3NCwiZXhwIjoxNzAyMDYxMTU0fQ.4MaI_aSQqkjHi5pEdWTWKEdWOvVrBkuaw0HyD8IDn7Q");
+        localStorage.setItem("CERASYNC_JWT_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlckB0ZXN0LmNvbSIsImlhdCI6MTcwMjI5Njc1MCwiZXhwIjoxNzAyMjk5NjMwfQ.r8xKOlkl1XbyhFruXvPRojvFMNtpamqnQr1agIKoj38");
         /* 
             Uncomment upper string if you want to test the login required acitons
             AND go to postman, make auth req, and paste the response here

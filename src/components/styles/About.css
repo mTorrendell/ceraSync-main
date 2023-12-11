@@ -64,6 +64,10 @@ body {
   border-radius: 50%;
 }
 
+.profileimg:hover {
+  transform: scale(1.1); 
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;

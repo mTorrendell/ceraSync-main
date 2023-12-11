@@ -29,7 +29,7 @@ const ModalAuth = ({ open }) => {
   const verificationtrue = async (e) => {
     let res = "";
     try {
-      res = await dispatch(e);
+      res = await dispatch(checkEmail(inputValue));
     } catch {
       console.error("error");
     }
@@ -90,7 +90,7 @@ const ModalAuth = ({ open }) => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="col-12 button" onClick={verification}>
+          <div className="col-12 button" onClick={verificationtrue}>
             Continue
           </div>
           {isEmailValid && <p>Please specify email</p>}

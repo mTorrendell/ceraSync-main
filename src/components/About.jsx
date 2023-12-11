@@ -18,31 +18,82 @@ function About() {
         <div className="row">
           <div className="profile col-md-4">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/nikita.jpeg")} alt="profile"/>
+              <a
+                href="https://www.linkedin.com/in/nikita-vladimirov-9b30b0252/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  className="profileimg"
+                  src={require("./img/nikita.jpeg")}
+                  alt="profile"
+                />
+              </a>
             </div>
             <h6>Nikita Vladimirov</h6>
           </div>
           <div className="profile col-md-4">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/tatenda.jpeg")} alt="profile" />
+              <a
+                href="https://www.linkedin.com/in/tatenda-mudavanhu-85b09a1b1/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  className="profileimg"
+                  src={require("./img/tatenda.jpeg")}
+                  alt="profile"
+                />
+              </a>
             </div>
             <h6>Tatenda Mudavanhu</h6>
           </div>
           <div className="profile col-md-4">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/lilly.jpeg")} alt="profile"/>
+              <a
+                href="https://www.linkedin.com/in/lilly-maria-wallawitsch-733893245/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  className="profileimg"
+                  src={require("./img/lilly.jpeg")}
+                  alt="profile"
+                />
+              </a>
             </div>
             <h6>Lilly Wallawitsch</h6>
           </div>
+
           <div className="profile col-md-6 justify-content-center">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/ava.jpeg")} alt="profile" />
+              <a
+                href="https://www.linkedin.com/in/ava-hurst-86b459250/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  className="profileimg"
+                  src={require("./img/ava.jpeg")}
+                  alt="profile"
+                />
+              </a>
             </div>
             <h6>Ava Hurst</h6>
           </div>
           <div className="profile col-md-6">
             <div className="profileImgContainer">
-              <img className="profileimg" src={require("./img/mercedes.jpg")} alt="profile"/>
+              <a
+                href="https://www.linkedin.com/in/mercedes-torrendell-748826236/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  className="profileimg"
+                  src={require("./img/mercedes.jpg")}
+                  alt="profile"
+                />
+              </a>
             </div>
             <h6>Mercedes Torrendell</h6>
           </div>

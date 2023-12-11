@@ -59,23 +59,17 @@ function EventHomeR({ eventObj }) {
             <h5 className="bold when-where">Where</h5>
           </div>
           <div className="two_in_row_text_container_r">
-            <h5 className="meta_data">
-                {eventObj.location}
-            </h5>
+            <h5 className="meta_data">{eventObj.location}</h5>
           </div>
         </div>
-
         <div className="two_in_row">
           <div className="two_in_row_text_container_r">
             <h5 className="bold when-where">When</h5>
           </div>
           <div className="two_in_row_text_container_r">
-            <h5 className="meta_data">
-                {formatDateTime(eventObj.dateTime)}
-            </h5>
+            <h5 className="meta_data">{formatDateTime(eventObj.dateTime)}</h5>
           </div>
         </div>
-
         <div className="event_text_container_r">
           <ThemeProvider theme={theme}>
             <Button
