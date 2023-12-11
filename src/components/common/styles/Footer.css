@@ -5,6 +5,9 @@
   max-width: 100% !important;
   background-color: #9d8989;
   height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .bottom-info {
@@ -12,8 +15,8 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding:10px;
-  margin-right:25px
+  padding: 10px;
+  margin-right: 25px;
 }
 
 .info {

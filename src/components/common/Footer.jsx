@@ -6,7 +6,7 @@ function Footer() {
   return (
     <>
       <div className="container footer text-center">
-        <div className="row align-items-start">----</div>
+        <div className="row align-items-start"></div>
         <div className="row align-items-start">
           <div className="col-3 info">FAQs</div>
           <div className="col-3 info">Cookie Policy</div>

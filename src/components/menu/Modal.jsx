@@ -21,8 +21,8 @@ const Modal = () => {
   };
 
   const closeAll = () => {
-    closeModal();
     login();
+    closeModal();
   };
 
   const menu = () => {

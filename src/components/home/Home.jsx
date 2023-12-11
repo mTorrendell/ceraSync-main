@@ -15,51 +15,50 @@ import "./styles/Home.css";
 
 function Home() {
   const dispatch = useDispatch();
-  const events   = useSelector(selectAllEvents);
-  const mounted  = useRef(false);
+  const events = useSelector(selectAllEvents);
+  const mounted = useRef(false);
 
   useEffect(() => {
-
     if (!mounted.current) {
-        mounted.current = true;
-        dispatch(getAllEvents());
+      mounted.current = true;
+      dispatch(getAllEvents());
     }
   }, [dispatch]);
 
   const home = () => {
     return (
-    <div id="home-container">
+      <div id="home-container">
         <InfoHome />
         {events.map((event, i) =>
-            i % 2 === 0 ? (
-                <EventHomeL eventObj={event} />
-            ) : (
-                <EventHomeR eventObj={event} />
-            )
+          i % 2 === 0 ? (
+            <EventHomeL key={i} eventObj={event} />
+          ) : (
+            <EventHomeR key={i} eventObj={event} />
+          )
         )}
         <Line />
         <Subscription />
         <Modal />
-    </div> 
-    )}
+      </div>
+    );
+  };
 
   const loading = () => {
     return (
-        <div className="d-flex justify-content-center align-items-center f">
-            {" "}
-            <ReactLoading
-                className="m-2 p-5 over"
-                type={"bubbles"}
-                color={"#B28484"}
-                height={"25%"}
-                width={"20%"}
-            />
-        </div>
-    )
-  }
+      <div className="d-flex justify-content-center align-items-center f">
+        {" "}
+        <ReactLoading
+          className="m-2 p-5 over"
+          type={"bubbles"}
+          color={"#B28484"}
+          height={"25%"}
+          width={"20%"}
+        />
+      </div>
+    );
+  };
 
   return events.length !== 0 ? home() : loading();
-
 }
 
 export default Home;
