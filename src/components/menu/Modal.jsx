@@ -3,14 +3,16 @@ import ModalButton from "./ModalButton";
 import "./styles/About.css";
 import "./ModalButton";
 import LoginModal from "./auth/modalAuth";
-
+import { selectIsLogged } from "../../redux/slices/authSlice";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Modal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const isLogged = useSelector(selectIsLogged);
 
   const login = () => {
     if (!loginOpen) {
@@ -49,12 +51,16 @@ const Modal = () => {
                   ABOUT US
                 </h1>
               </Link>
-              <h1
-                className="title-header-modal mt-3 title-header login"
-                onClick={login}
-              >
-                LOGIN
-              </h1>
+              {!isLogged ? (
+                <h1
+                  className="title-header-modal mt-3 title-header login"
+                  onClick={login}
+                >
+                  LOGIN
+                </h1>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>

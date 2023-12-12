@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/ModalAuth.css";
 import { useDispatch } from "react-redux";
-import { checkEmail } from "../../../redux/slices/authSlice";
+import { checkEmail, authenticate } from "../../../redux/slices/authSlice";
 import LoginUser from "./ModalLoginUser";
 import LoginNewUser from "./ModalNewUser";
 import WestIcon from "@mui/icons-material/West";
+import { initialState } from "../../../redux/slices/authSlice";
 
 const ModalAuth = ({ open }) => {
   const [isModalOpen, setIsModalOpen] = useState(open);
-  const [inputValue, setInputValue] = useState("");
+  const [email, setEmail] = useState("");
   const [validateEmail, setValidateEmail] = useState(false);
   const [validateExist, setValidateExist] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
@@ -22,43 +23,26 @@ const ModalAuth = ({ open }) => {
   };
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    setEmail(event.target.value);
   };
 
-  //For when the call works
-  const verificationtrue = async (e) => {
+  const verification = async (e) => {
     let res = "";
+    const obj = {
+      email: email,
+    };
     try {
-      res = await dispatch(checkEmail(inputValue));
+      res = await dispatch(checkEmail(obj));
     } catch {
       console.error("error");
     }
-
-    if (inputValue && res.length !== 0) {
-      if (res.isExist) {
-        setValidateExist(true);
-        setValidateEmail(false);
-      } else if (!res.isExist) {
+    if (email && res.length !== 0) {
+      if (res.payload.isExists) {
         setValidateExist(false);
         setValidateEmail(true);
-      }
-    } else {
-      setIsEmailValid(true);
-    }
-  };
-
-  const verification = () => {
-    if (inputValue) {
-      console.log("ENTRO AL INPUT VALUE");
-      if (!validateEmail) {
-        // setValidateExist(true);
-        setIsEmailValid(false);
-        console.log("ENTRO AL VALIDATE EMAIL");
-
-        setValidateEmail(true);
-      } else {
+      } else if (!res.payload.isExists) {
+        setValidateExist(true);
         setValidateEmail(false);
-        // setValidateExist(false);
       }
     } else {
       setIsEmailValid(true);
@@ -86,23 +70,23 @@ const ModalAuth = ({ open }) => {
               aria-label="Default"
               placeholder="Email adress"
               aria-describedby="inputGroup-sizing-default"
-              value={inputValue}
+              value={email}
               onChange={handleInputChange}
             />
           </div>
-          <div className="col-12 button" onClick={verificationtrue}>
+          <div className="col-12 button" onClick={verification}>
             Continue
           </div>
           {isEmailValid && <p>Please specify email</p>}
         </div>
       </div>
       {validateEmail ? (
-        <LoginUser openUser={validateEmail} email={inputValue} />
+        <LoginUser openUser={validateEmail} email={email} />
       ) : (
         <></>
       )}
       {validateExist ? (
-        <LoginNewUser openNewuser={validateExist} email={inputValue} />
+        <LoginNewUser openNewuser={validateExist} email={email} />
       ) : (
         <></>
       )}

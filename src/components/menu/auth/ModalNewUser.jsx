@@ -2,23 +2,50 @@ import React, { useState } from "react";
 import "../styles/About.css";
 import "../styles/ModalAuth.css";
 import { useDispatch } from "react-redux";
-import { checkEmail } from "../../../redux/slices/authSlice";
+import { register } from "../../../redux/slices/authSlice";
 import WestIcon from "@mui/icons-material/West";
+import { useNavigate } from "react-router-dom";
 
 const ModalNewUser = ({ openNewuser, email }) => {
   const [isModalOpen, setIsModalOpen] = useState(openNewuser);
-  const [inputValue, setInputValue] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [emailEmpty, setEmailEmpty] = useState(false);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    setNewPassword(event.target.value);
   };
 
   const setClose = () => {
     setIsModalOpen(false);
   };
 
-  const verification = async () => {};
+  const verification = async () => {
+    if (newPassword.length > 0) {
+      let res = "";
+      const obj = {
+        email: email,
+        password: newPassword,
+      };
+
+      try {
+        res = await dispatch(register(obj));
+        if (res.payload.token) {
+          //  window.location.reload();
+          navigate("/about");
+
+          setEmailEmpty(false);
+        } else {
+        }
+      } catch (e) {
+        setEmailEmpty(true);
+      }
+    } else {
+      setEmailEmpty(true);
+    }
+  };
 
   return isModalOpen ? (
     <>
@@ -36,19 +63,20 @@ const ModalNewUser = ({ openNewuser, email }) => {
             <h3>{email}</h3>
             <input
               required
-              type="text"
+              type="password"
               className="col-12 form-control"
               id="input"
               aria-label="Default"
               placeholder="Create password"
               aria-describedby="inputGroup-sizing-default"
-              value={inputValue}
+              value={newPassword}
               onChange={handleInputChange}
             />
           </div>
           <div className="col-12 button" onClick={verification}>
-            Continue
+            Register
           </div>
+          {emailEmpty && <p>Please specify password</p>}
         </div>
       </div>
     </>

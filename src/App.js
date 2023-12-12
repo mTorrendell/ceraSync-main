@@ -19,10 +19,9 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/event/:id" element={<Event />}></Route>
-        {/* <Route element={<ProtectedRouteUser />}>
+        <Route element={<ProtectedRouteUser />}>
           <Route path="/create" element={<CreateEvent />}></Route>
-        </Route> */}
-        <Route path="/create" element={<CreateEvent />}></Route>
+        </Route>
         <Route element={<ProtectedRouteUser />}>
           <Route path="/profile/:id" element={<ProfileUser />}></Route>
         </Route>

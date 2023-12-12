@@ -1,22 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/About.css";
 import "../styles/ModalAuth.css";
 import { useDispatch } from "react-redux";
-import { checkEmail } from "../../../redux/slices/authSlice";
 import WestIcon from "@mui/icons-material/West";
+import { authenticate } from "../../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const ModalUser = ({ openUser, email }) => {
   const [isModalOpen, setIsModalOpen] = useState(openUser);
-  const [inputValue, setInputValue] = useState("");
-  // const [validateEmail, setValidateEmail] = useState(false);
+  const [password, setPassword] = useState("");
+  const [alterPassword, setAlterPassword] = useState(false);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const setClose = () => {
     setIsModalOpen(false);
   };
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    setPassword(event.target.value);
   };
+
+  const verifyPassword = async () => {
+    let res = "";
+    const obj = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      res = await dispatch(authenticate(obj));
+      if (res.payload.token) {
+        navigate("/about");
+        // window.location.reload();
+        // navigate("/");
+        setAlterPassword(false);
+      }
+    } catch (e) {
+      setAlterPassword(true);
+    }
+  };
+
+  useEffect(() => {}, []);
 
   return isModalOpen ? (
     <>
@@ -39,12 +65,15 @@ const ModalUser = ({ openUser, email }) => {
               aria-label="Default"
               placeholder="Password"
               aria-describedby="inputGroup-sizing-default"
-              value={inputValue}
+              value={password}
               onChange={handleInputChange}
             />{" "}
           </div>
 
-          <div className="col-12 button">Log In</div>
+          <div className="col-12 button" onClick={verifyPassword}>
+            Log In
+          </div>
+          {alterPassword && <p>Incorrect password</p>}
         </div>
       </div>
     </>
