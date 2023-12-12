@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./styles/About.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrEmail } from "../redux/slices/authSlice";
+import { setIsLogged } from "../redux/slices/authSlice";
 
 function ProfileUser() {
   const [profile, setProfile] = useState("f");
   const isLogged = useSelector(setCurrEmail);
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    dispatch(setIsLogged(false));
+    localStorage.removeItem("CERASYNC_JWT_TOKEN", "");
+  };
 
   useEffect(() => {
     setProfile(isLogged.payload.auth.currEmail);
@@ -33,7 +40,9 @@ function ProfileUser() {
           </div>
         </div>
         <div className="col-md-5 p-5 image-container">
-          <h4 className="">LOGOUT</h4>
+          <h4 className="" onClick={logOut}>
+            LOGOUT
+          </h4>
         </div>
       </div>
     </>
