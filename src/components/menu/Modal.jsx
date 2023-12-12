@@ -35,17 +35,18 @@ const Modal = () => {
             <span className="close-button" onClick={closeAll}>
               &times;
             </span>
-
             <div>
               <h6 className="project-modal">CERA SYNC</h6>
               <Link className="link" to="/">
                 <h1 className="title-header-modal title-header mt-3">HOME</h1>
               </Link>
-              <Link className="link" to="/create">
-                <h1 className="title-header-modal title-header mt-3">
-                  CREATE EVENT
-                </h1>
-              </Link>
+              {isLogged && (
+                <Link className="link" to="/create">
+                  <h1 className="title-header-modal title-header mt-3">
+                    CREATE EVENT
+                  </h1>
+                </Link>
+              )}
               <Link className="link" to="/about">
                 <h1 className="title-header-modal title-header mt-3">
                   ABOUT US
@@ -59,7 +60,14 @@ const Modal = () => {
                   LOGIN
                 </h1>
               ) : (
-                <></>
+                <>
+                  <Link className="link" to="/profile">
+                    {" "}
+                    <h1 className="title-header-modal mt-3 title-header login">
+                      PROFILE
+                    </h1>
+                  </Link>
+                </>
               )}
             </div>
           </div>

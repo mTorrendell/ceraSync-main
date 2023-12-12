@@ -9,13 +9,19 @@ import { useNavigate } from "react-router-dom";
 const ModalNewUser = ({ openNewuser, email }) => {
   const [isModalOpen, setIsModalOpen] = useState(openNewuser);
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirm, setConfirm] = useState(true);
   const [emailEmpty, setEmailEmpty] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleInputChange = (event) => {
+  const handleFirstPassword = (event) => {
     setNewPassword(event.target.value);
+  };
+
+  const handleSecondPassword = (event) => {
+    setConfirmPassword(event.target.value);
   };
 
   const setClose = () => {
@@ -23,27 +29,28 @@ const ModalNewUser = ({ openNewuser, email }) => {
   };
 
   const verification = async () => {
-    if (newPassword.length > 0) {
-      let res = "";
-      const obj = {
-        email: email,
-        password: newPassword,
-      };
-
-      try {
-        res = await dispatch(register(obj));
-        if (res.payload.token) {
-          //  window.location.reload();
-          navigate("/about");
-
-          setEmailEmpty(false);
-        } else {
+    if (confirmPassword === newPassword) {
+      if (newPassword.length > 0) {
+        let res = "";
+        const obj = {
+          email: email,
+          password: newPassword,
+        };
+        try {
+          res = await dispatch(register(obj));
+          if (res.payload.token) {
+            navigate("/about");
+            setEmailEmpty(false);
+          } else {
+          }
+        } catch (e) {
+          setEmailEmpty(true);
         }
-      } catch (e) {
+      } else {
         setEmailEmpty(true);
       }
     } else {
-      setEmailEmpty(true);
+      setConfirm(false);
     }
   };
 
@@ -70,13 +77,25 @@ const ModalNewUser = ({ openNewuser, email }) => {
               placeholder="Create password"
               aria-describedby="inputGroup-sizing-default"
               value={newPassword}
-              onChange={handleInputChange}
+              onChange={handleFirstPassword}
+            />
+            <input
+              required
+              type="password"
+              className="col-12 form-control"
+              id="input"
+              aria-label="Default"
+              placeholder="Specify password"
+              aria-describedby="inputGroup-sizing-default"
+              value={confirmPassword}
+              onChange={handleSecondPassword}
             />
           </div>
           <div className="col-12 button" onClick={verification}>
             Register
           </div>
           {emailEmpty && <p>Please specify password</p>}
+          {!confirm && <p>Passwords are not the same</p>}
         </div>
       </div>
     </>

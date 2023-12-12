@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/ModalAuth.css";
 import { useDispatch } from "react-redux";
-import { checkEmail, authenticate } from "../../../redux/slices/authSlice";
+import { checkEmail } from "../../../redux/slices/authSlice";
 import LoginUser from "./ModalLoginUser";
 import LoginNewUser from "./ModalNewUser";
 import WestIcon from "@mui/icons-material/West";
-import { initialState } from "../../../redux/slices/authSlice";
 
 const ModalAuth = ({ open }) => {
   const [isModalOpen, setIsModalOpen] = useState(open);
@@ -27,7 +26,12 @@ const ModalAuth = ({ open }) => {
   };
 
   const verification = async (e) => {
+    //restarting states
+    setValidateExist(false);
+    setValidateEmail(false);
     let res = "";
+
+    //creating the object
     const obj = {
       email: email,
     };
@@ -48,6 +52,11 @@ const ModalAuth = ({ open }) => {
       setIsEmailValid(true);
     }
   };
+
+  useEffect(() => {
+    setIsModalOpen(false);
+    setIsModalOpen(true);
+  }, []);
 
   return isModalOpen ? (
     <>

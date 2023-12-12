@@ -29,6 +29,9 @@ function Home() {
     return (
       <div id="home-container">
         <InfoHome />
+
+        <Line />
+
         {events.map((event, i) =>
           i % 2 === 0 ? (
             <EventHomeL key={i} eventObj={event} />

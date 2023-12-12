@@ -23,7 +23,7 @@ function App() {
           <Route path="/create" element={<CreateEvent />}></Route>
         </Route>
         <Route element={<ProtectedRouteUser />}>
-          <Route path="/profile/:id" element={<ProfileUser />}></Route>
+          <Route path="/profile" element={<ProfileUser />}></Route>
         </Route>
       </Routes>
       <Footer />

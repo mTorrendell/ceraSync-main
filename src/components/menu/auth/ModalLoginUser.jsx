@@ -32,7 +32,7 @@ const ModalUser = ({ openUser, email }) => {
     try {
       res = await dispatch(authenticate(obj));
       if (res.payload.token) {
-        navigate("/about");
+        navigate("/profile");
         // window.location.reload();
         // navigate("/");
         setAlterPassword(false);
@@ -41,8 +41,6 @@ const ModalUser = ({ openUser, email }) => {
       setAlterPassword(true);
     }
   };
-
-  useEffect(() => {}, []);
 
   return isModalOpen ? (
     <>
