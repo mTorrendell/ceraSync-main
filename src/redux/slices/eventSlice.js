@@ -22,6 +22,7 @@ baseURL.interceptors.request.use(
 
 const initialState = {
     events: [],
+    currentUserEvents: [],
     currentEvent: undefined,
     isError: false,
     errorMsg: ""
@@ -29,6 +30,11 @@ const initialState = {
 
 export const getAllEvents = createAsyncThunk("store/getAllEvents", async () => {
     const response = await baseURLPublic.get("/get_all_events");
+    return response.data;
+});
+
+export const getEventsByOwnerId = createAsyncThunk("store/getEventsByOwnerId", async (id) => {
+    const response = await baseURLPublic.get(`/get_events_by_owner?id=${id}`);
     return response.data;
 });
 
@@ -71,6 +77,16 @@ const eventSlice = createSlice({
                 state.events = action.payload.events;
             })
             .addCase(getAllEvents.rejected, (state, action) => {
+                console.log(action.payload);
+                state.isError = true;
+                state.errorMsg = "Failed to load events";
+            })
+
+            // getEventsByOwnerId  
+            .addCase(getEventsByOwnerId.fulfilled, (state, action) => {
+                state.currentUserEvents = action.payload.events;
+            })
+            .addCase(getEventsByOwnerId.rejected, (state, action) => {
                 console.log(action.payload);
                 state.isError = true;
                 state.errorMsg = "Failed to load events";
@@ -134,6 +150,7 @@ export const {
 } = eventSlice.actions;
 
 export const selectAllEvents = (state) => state.store.events;
+export const selectCurrentUserEvents = (state) => state.store.currentUserEvents;
 export const selectCurrentEvent = (state) => state.store.currentEvent;
 export const selectIsError = (state) => state.store.isError;
 export const selectErrorMsg = (state) => state.store.errorMsg;
