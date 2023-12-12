@@ -24,7 +24,12 @@ export function isTimeValid(time) {
     if (splited.some((x) => !isNumber(x))) return false;
     const [h, m] = splited.map(Number);
     return isHoursValid(h) && isMinutesValid(m);
+}
 
+export function isFileValid(file) {
+    if (!file) return false;
+    if (file.type === '.jpeg' || file.type === '.png' ||  file.type === '.svg') return true;
+    return false;
 }
 
 export function isShortDescValid(sD) {

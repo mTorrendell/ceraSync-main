@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { addEvent } from "../redux/slices/eventSlice";
@@ -22,6 +22,7 @@ import {
   isTimeValid,
   isShortDescValid,
   isFullDescValid,
+  isFileValid,
 } from "../util/FormValidators";
 
 const customTheme = (outerTheme) =>
@@ -63,17 +64,29 @@ const customTheme = (outerTheme) =>
 
 function Event() {
   const [event, setEvent] = useState({
-    title: "",
-    location: "",
-    dateTime: "",
-    host: "",
+    title:     "",
+    location:  "",
+    dateTime:  "",
+    host:      "",
     shortDesc: "",
-    fullDesc: "",
+    fullDesc:  "",
     imageData: "",
   });
-  const [b64str, setB64str] = useState(null);
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [touchedF, setTouchedF] = useState({
+    title:     false,
+    location:  false,
+    dateTime:  false,
+    host:      false,
+    shortDesc: false,
+    fullDesc:  false,
+    imageData: false,
+  });
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFileValidBool, setIsFileValidBool] = useState(false);
+  const [b64str, setB64str]           = useState(null);
+  const [date, setDate]               = useState("");
+  const [time, setTime]               = useState("");
+  
 
   const dispatch = useDispatch();
   const outerTheme = useTheme();
@@ -81,19 +94,16 @@ function Event() {
   const formatDateTime = () => {
     if (date && time) {
       const [d, m, y] = date.split("/");
-      const [h, min] = time.split(":");
-
-      return new Date(y, m - 1, d, h, min)
-        .toISOString()
-        .slice(0, 19)
-        .replace("T", " ");
+      const [h, min]  = time.split(":");
+      return new Date(y, m - 1, d, h, min).toISOString().slice(0, 19);
     }
   };
 
   const handleFileChange = async (event) => {
     try {
       const file = event.target.files[0];
-      if (file) {
+      setIsFileValidBool(isFileValid(file));
+      if (isFileValidBool) {
         const base64String = await imageToBase64(file);
         setB64str(base64String);
       }
@@ -114,11 +124,26 @@ function Event() {
   };
 
   const handleInputChange = (propName) => (e) => {
-    setEvent((curr) => ({
-      ...curr,
-      [propName]: e.target.value,
-    }));
+    setEvent((curr) => ( { ...curr, [propName]: e.target.value } ));
+    setTouchedF((curr) => ( { ...curr, [propName]: true } ))
   };
+
+  useEffect(() => {
+    setIsFormValid(
+      isTitleValid(event.title) &&
+      isLocationValid(event.location) &&
+      isDateValid(date) &&
+      isTimeValid(time) &&
+      isHostValid(event.host) &&
+      isShortDescValid(event.shortDesc) &&
+      isFullDescValid(event.fullDesc) &&
+      isFileValidBool
+    );
+  }, [event, date, time, isFileValidBool]);
+
+  const textHT  = (fieldName, length) => `${fieldName} should not be empty and should be no more than ${length} characters`
+  const dateHT  = "Date should be in a format of DD/MM/YYYY"
+  const timeHT  = "Time should be in a format of HH:MM"
 
   return (
     <>
@@ -136,7 +161,8 @@ function Event() {
                   fullWidth
                   label="Title"
                   variant="filled"
-                  error={!isTitleValid(event.title)}
+                  error={touchedF.title && !isTitleValid(event.title)}
+                  helperText={touchedF.title && !isTitleValid(event.title) ? textHT("Title", "50") : ''}
                   onChange={handleInputChange("title")}
                 />
               </div>
@@ -148,7 +174,8 @@ function Event() {
                   fullWidth
                   label="Location"
                   variant="filled"
-                  error={!isLocationValid(event.location)}
+                  error={touchedF.location && !isLocationValid(event.location)}
+                  helperText={touchedF.location && !isLocationValid(event.location) ? textHT("Location", "50") : ''}
                   onChange={handleInputChange("location")}
                 />
               </div>
@@ -163,7 +190,8 @@ function Event() {
                       label="Date"
                       variant="filled"
                       placeholder="DD/MM/YYYY"
-                      error={!isDateValid(date)}
+                      error={touchedF.dateTime && !isDateValid(date)}
+                      helperText={touchedF.dateTime && !isDateValid(date) ? dateHT : ''}
                       onChange={(e) => setDate(e.target.value)}
                     />
                   </div>
@@ -175,7 +203,8 @@ function Event() {
                       label="Time"
                       variant="filled"
                       placeholder="HH:MM"
-                      error={!isTimeValid(time)}
+                      error={touchedF.dateTime && !isTimeValid(time)}
+                      helperText={touchedF.dateTime && !isTimeValid(time) ? timeHT : ''}
                       onChange={(e) => setTime(e.target.value)}
                     />
                   </div>
@@ -189,7 +218,8 @@ function Event() {
                   fullWidth
                   label="Host"
                   variant="filled"
-                  error={!isHostValid(event.host)}
+                  error={touchedF.host && !isHostValid(event.host)}
+                  helperText={touchedF.host && !isHostValid(event.host)? textHT("Host", "50") : ''}
                   onChange={handleInputChange("host")}
                 />
               </div>
@@ -202,7 +232,8 @@ function Event() {
                   fullWidth
                   label="Short Overview"
                   variant="filled"
-                  error={!isShortDescValid(event.shortDesc)}
+                  error={touchedF.shortDesc && !isShortDescValid(event.shortDesc)}
+                  helperText={touchedF.shortDesc && !isShortDescValid(event.shortDesc) ? textHT("Short overview", "100") : ''}
                   onChange={handleInputChange("shortDesc")}
                 />
               </div>
@@ -215,7 +246,8 @@ function Event() {
                   fullWidth
                   label="Description"
                   variant="filled"
-                  error={!isFullDescValid(event.fullDesc)}
+                  error={touchedF.fullDesc && !isFullDescValid(event.fullDesc)}
+                  helperText={touchedF.fullDesc && !isFullDescValid(event.fullDesc) ? textHT("Description", "1000") : ''}
                   onChange={handleInputChange("fullDesc")}
                 />
               </div>
@@ -230,7 +262,11 @@ function Event() {
                 text="Create"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleSubmit();
+                  if (isFormValid) {
+                    handleSubmit();
+                  } else {
+                    console.log("Input is invalid")
+                  }
                 }}
               />
             </div>
