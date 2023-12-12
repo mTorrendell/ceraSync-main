@@ -3,21 +3,10 @@ import "./styles/EventHomeL.css";
 
 import Line from "../common/Line";
 import { base64ToImage } from "../../util/ImageConverter";
-import { Button } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { formatDateTime } from "../../util/TimeConverter";
 
-const theme = createTheme({
-  palette: {
-    coral: {
-      main: "#C4989D",
-      light: "#F2BDC3",
-      dark: "#917175",
-      contrastText: "#4F3E40",
-    },
-  },
-});
+import CSButton from "../common/CSButton";
 
 function EventHomeL({ eventObj }) {
   const [imageConverted, setImageConverted] = useState(null);
@@ -67,19 +56,10 @@ function EventHomeL({ eventObj }) {
         </div>
 
         <div className="event_text_container_l">
-          <ThemeProvider theme={theme}>
-            <Button
-              size="large"
-              color="coral"
-              variant="contained"
-              onClick={() => {
-                navigate(`/event/${eventObj.id}`);
-              }}
-            >
-              {" "}
-              <div className="text_button">Check it out</div>
-            </Button>
-          </ThemeProvider>
+            <CSButton 
+                text="Check it out" 
+                onClick={() => navigate(`/event/${eventObj.id}`) }
+            />
         </div>
       </div>
 

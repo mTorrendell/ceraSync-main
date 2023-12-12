@@ -1,213 +1,237 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+
+import { useDispatch }   from "react-redux";
+import { addEvent }      from "../redux/slices/eventSlice";
+import { imageToBase64 } from "../util/ImageConverter";
+import { TextField }     from "@mui/material";
+
+import InputFileUpload   from "./common/InputFileUpload";
+import CSButton          from "./common/CSButton";
+
 import "./styles/Event.css";
 import "./styles/CreateEvent.css";
-// import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addEvent } from "../redux/slices/eventSlice";
-import { imageToBase64 } from "../util/ImageConverter";
-import { Button } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const theme = createTheme({
-  palette: {
-    coral: {
-      main: "#C4989D",
-      light: "#F2BDC3",
-      dark: "#917175",
-      contrastText: "#4F3E40",
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+
+import { isTitleValid, 
+         isLocationValid,
+         isHostValid,
+         isDateValid,
+         isTimeValid,
+         isShortDescValid,
+         isFullDescValid } from "../util/FormValidators";
+
+const customTheme = (outerTheme) =>
+  createTheme({
+    palette: {
+      mode: outerTheme.palette.mode,
     },
-  },
-});
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '--TextField-brandBorderColor': "#C4989D",
+            '--TextField-brandBorderHoverColor': "#F2BDC3",
+            '--TextField-brandBorderFocusedColor': "#917175",
+            '& label.Mui-focused': {
+              color: 'var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+      MuiFilledInput: {
+        styleOverrides: {
+          root: {
+            '&:before, &:after': {
+              borderBottom: '4px solid var(--TextField-brandBorderColor)',
+            },
+            '&:hover:not(.Mui-disabled, .Mui-error):before': {
+              borderBottom: '4px solid var(--TextField-brandBorderHoverColor)',
+            },
+            '&.Mui-focused:after': {
+              borderBottom: '4px solid var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+    },
+  });
 
 function Event() {
-  const [event, setEvent] = useState(null);
+  const [event, setEvent]   = useState({
+    title: '', 
+    location: '',
+    dateTime: '',
+    host: '',
+    shortDesc: '', 
+    fullDesc: '',
+    imageData: ''
+  });
   const [b64str, setB64str] = useState(null);
+  const [date, setDate]     = useState('');
+  const [time, setTime]     = useState('');
 
-  //NICK: the state that helps prevent errors
-  const [correctlyAdded, setCorrectlyAdded] = useState(false);
   const dispatch = useDispatch();
+  const outerTheme = useTheme();
+
+  const formatDateTime = () => {
+    if (date && time) {
+        const [d, m, y] = date.split('/');
+        const [h, min]  = time.split(':');
+
+        return new Date(y, m-1, d, h, min).toISOString().slice(0, 19).replace('T', ' ')
+    }
+  }
 
   const handleFileChange = async (event) => {
     try {
-      const file = event.target.files[0];
-
-      if (file) {
-        const base64String = await imageToBase64(file);
-        setB64str(base64String);
-      }
+        const file = event.target.files[0];
+        if (file) {
+            const base64String = await imageToBase64(file);
+            setB64str(base64String);
+        }
     } catch (error) {
-      console.error("Error handling file change:", error);
+        console.error("Error handling file change:", error);
     }
   };
 
   const handleSubmit = async () => {
+    event.dateTime  = formatDateTime();
     event.imageData = b64str;
     try {
-      console.log(event);
-      dispatch(addEvent(event));
+        console.log(event);
+        dispatch(addEvent(event));
     } catch {
-      console.error("error");
+        console.error("error");
     }
   };
 
-  useEffect(() => {
-    //NICK: Everytime the "event" (it is withtin the parenthesis) changes the logic here will be excecute
-    //So verify things like length of input!
-  }, [event]);
+  const handleInputChange = (propName) => (e) => {
+        setEvent((curr) => ({
+            ...curr,
+            [propName]: e.target.value,
+        }))
+  }
 
   return (
     <>
       <div className="initial-container-info container">
-        <form
-          className="newProductForm"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit();
-            // handle.createEvent(e.target);
-            //handle.createEvent();
-            //console.log("e", e.target);
-          }}
-        >
-          <div className="center row submit-container">
+
+        <form className="newProductForm">
+
+          <div className="center submit-container">
+
             <h1 className="nTitle ">SUBMIT YOUR EVENT</h1>
-            <div className="input-group mb-4">
-              <div className="input-group-prepend"></div>
-              <input
-                required
-                type="text"
-                className="form-control"
-                aria-label="Default"
-                placeholder="Title"
-                aria-describedby="inputGroup-sizing-default"
-                defaultValue={event ? event.title : ""}
-                onChange={(e) => {
-                  setEvent((current) => {
-                    return {
-                      ...current,
-                      title: e.target.value,
-                    };
-                  });
-                }}
-              />
-            </div>
-            <div className="input-group mb-4">
-              <div className="input-group-prepend"></div>
-              <input
-                required
-                type="text"
-                className="form-control"
-                aria-label="Default"
-                placeholder="Location"
-                aria-describedby="inputGroup-sizing-default"
-                defaultValue={event ? event.location : ""}
-                onChange={(e) => {
-                  setEvent((current) => {
-                    return {
-                      ...current,
-                      location: e.target.value,
-                    };
-                  });
-                }}
-              />
-            </div>
-            <div className="input-group mb-4">
-              <div className="input-group-prepend"></div>
-              <input
-                required
-                type="text"
-                className="form-control"
-                aria-label="Default"
-                placeholder="Date"
-                aria-describedby="inputGroup-sizing-default"
-                defaultValue={event ? event.dateTime : ""}
-                onChange={(e) => {
-                  setEvent((current) => {
-                    return {
-                      ...current,
-                      dateTime: e.target.value,
-                    };
-                  });
-                }}
-              />
-            </div>
-            <div className="input-group mb-4">
-              <div className="input-group-prepend"></div>
-              <input
-                required
-                type="text"
-                className="form-control"
-                aria-label="Default"
-                placeholder="Host"
-                aria-describedby="inputGroup-sizing-default"
-                defaultValue={event ? event.host : ""}
-                onChange={(e) => {
-                  setEvent((current) => {
-                    return {
-                      ...current,
-                      host: e.target.value,
-                    };
-                  });
-                }}
-              />
-            </div>
-            <div className="input-group mb-4">
-              <textarea
-                required
-                className="form-control"
-                aria-label="With textarea"
-                placeholder="Short Overview"
-                defaultValue={event ? event.shorDescription : ""}
-                onChange={(e) => {
-                  setEvent((current) => {
-                    return {
-                      ...current,
-                      shortDesc: e.target.value,
-                    };
-                  });
-                }}
-              ></textarea>
-            </div>
-            <div className="input-group mb-4">
-              <textarea
-                required
-                className="form-control"
-                aria-label="With textarea"
-                placeholder="Description"
-                defaultValue={event ? event.fullDesc : ""}
-                onChange={(e) => {
-                  setEvent((current) => {
-                    return {
-                      ...current,
-                      fullDesc: e.target.value,
-                    };
-                  });
-                }}
-              ></textarea>
-            </div>
-            <div className="input-group  m-2 mb-4">
-              <div className="custom-file">
-                <input
-                  type="file"
-                  onChange={handleFileChange}
-                  className="custom-file-input"
-                  id="inputGroupFile01"
+
+            <ThemeProvider theme={customTheme(outerTheme)}>
+
+            <div className="input-container">
+                <TextField
+                    className="event-text-field"
+                    required
+                    fullWidth
+                    label='Title'
+                    variant="filled"
+                    error={!isTitleValid(event.title)}
+                    onChange={handleInputChange('title')}
                 />
-              </div>
             </div>
-            <div className="button-container">
-              <ThemeProvider theme={theme}>
-                <Button
-                  size="large"
-                  color="coral"
-                  variant="contained"
-                  type="submit"
-                >
-                  {" "}
-                  <div className="text_button">Create</div>
-                </Button>
-              </ThemeProvider>
+
+            <div className="input-container">
+                <TextField
+                    className="event-text-field"
+                    required
+                    fullWidth
+                    label='Location'
+                    variant="filled"
+                    error={!isLocationValid(event.location)}
+                    onChange={handleInputChange('location')}
+                />
             </div>
+
+            <div className="input-container">      
+                <div className="dateTime-container">
+                    <div className="date-container">
+                        <TextField
+                            className="event-text-field"
+                            required
+                            fullWidth
+                            label='Date'
+                            variant="filled"
+                            placeholder="DD/MM/YYYY"
+                            error={!isDateValid(date)}
+                            onChange={(e) => setDate(e.target.value)}
+                        />
+                    </div>
+                    <div className="time-container">
+                        <TextField
+                            className="event-text-field"
+                            required
+                            fullWidth
+                            label='Time'
+                            variant="filled"
+                            placeholder="HH:MM"
+                            error={!isTimeValid(time)}
+                            onChange={(e) => setTime(e.target.value)}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="input-container">
+                <TextField
+                    className="event-text-field"
+                    required
+                    fullWidth
+                    label='Host'
+                    variant="filled"
+                    error={!isHostValid(event.host)}
+                    onChange={handleInputChange('host')}
+                />
+            </div>
+
+            <div className="input-container">
+                <TextField
+                    className="event-text-field"
+                    required
+                    multiline
+                    fullWidth
+                    label='Short Overview'
+                    variant="filled"
+                    error={!isShortDescValid(event.shortDesc)}
+                    onChange={handleInputChange('shortDesc')}
+                />
+            </div>
+
+            <div className="input-container">  
+                <TextField
+                    className="event-text-field"
+                    required
+                    multiline
+                    fullWidth
+                    label='Description'
+                    variant="filled"
+                    error={!isFullDescValid(event.fullDesc)}
+                    onChange={handleInputChange('fullDesc')}
+                />
+            </div>
+            </ThemeProvider>
+
+            <div className="input-container">
+                <InputFileUpload onChange={handleFileChange}/>
+            </div>
+
+            <div className="input-container">
+                <CSButton 
+                    text="Create" 
+                    onClick={(e) => {
+                            e.preventDefault();
+                            handleSubmit();
+                        }
+                    }
+                />
+            </div>
+
           </div>
         </form>
       </div>

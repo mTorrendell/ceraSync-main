@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import "./styles/EventHomeR.css";
-import Line from "../common/Line";
-import { Button } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { base64ToImage } from "../../util/ImageConverter";
-import { useNavigate } from "react-router-dom";
+import Line               from "../common/Line";
+import CSButton           from "../common/CSButton";
+import { base64ToImage }  from "../../util/ImageConverter";
+import { useNavigate }    from "react-router-dom";
 import { formatDateTime } from "../../util/TimeConverter";
 
-const theme = createTheme({
-  palette: {
-    coral: {
-      main: "#C4989D",
-      light: "#F2BDC3",
-      dark: "#917175",
-      contrastText: "#4F3E40",
-    },
-  },
-});
 
 function EventHomeR({ eventObj }) {
   const [imageConverted, setImageConverted] = useState(null);
@@ -71,19 +60,10 @@ function EventHomeR({ eventObj }) {
           </div>
         </div>
         <div className="event_text_container_r">
-          <ThemeProvider theme={theme}>
-            <Button
-              size="large"
-              color="coral"
-              variant="contained"
-              onClick={() => {
-                navigate(`/event/${eventObj.id}`);
-              }}
-            >
-              {" "}
-              <div className="text_button">Check it out</div>
-            </Button>
-          </ThemeProvider>
+            <CSButton 
+                text="Check it out" 
+                onClick={() => navigate(`/event/${eventObj.id}`) }
+            />
         </div>
       </div>
     </div>
