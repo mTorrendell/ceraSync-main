@@ -34,7 +34,7 @@ export const getAllEvents = createAsyncThunk("store/getAllEvents", async () => {
 });
 
 export const getEventsByOwnerId = createAsyncThunk("store/getEventsByOwnerId", async (id) => {
-    const response = await baseURLPublic.get(`/get_events_by_owner?id=${id}`);
+    const response = await baseURL.get(`/get_events_by_owner?id=${id}`);
     return response.data;
 });
 
