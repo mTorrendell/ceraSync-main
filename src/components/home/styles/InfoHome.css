@@ -1,26 +1,49 @@
 .info-home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    min-height: 80vh;
-    width: 50vmax;
-    height: 90vmin;
-    margin-top: 20vmin; 
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  min-height: 73vh;
+  width: 50vmax;
+  height: 60vmin;
+  margin-top: 16vmin;
+}
 
-  .short_description {
-    font-family: "Montserrat";
-    font-weight: 800;
-    font-size: 2.5vmin;
-    color: #a96c73;
-  }
+.short_description {
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-size: 2.5vmin;
+  color: #ece4db;
+}
 
-  .title {
-    margin: 5%;
-    font-family: "Raleway";
-    font-weight: 700;
-    font-size: 7vmin;
-  }
+.principalTitle {
+  color: #ece4db !important;
+}
 
+.title {
+  margin: 5%;
+  font-family: "Raleway";
+  font-weight: 700;
+  font-size: 7vmin;
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1.2);
+  position: absolute;
+  z-index: -1;
+  opacity: 0.7;
+  top: 0;
+}
+
+.lin {
+  margin: 20px;
+  border-width: 5px;
+  border-radius: 3px;
+  width: 100%;
+  border-color: #ece4db;
+  background-color: #ece4db;
+}

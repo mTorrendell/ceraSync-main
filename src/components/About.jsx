@@ -2,15 +2,22 @@ import React, { useState } from "react";
 import "./styles/About.css";
 import { Link } from "react-router-dom";
 import Modal from "./menu/Modal";
+import HeaderHome from "../components/common/HeaderHome.jsx";
 
 function About() {
   return (
-    <>
+    <div>
+      <HeaderHome />
+      <img
+        className="about_background"
+        src={process.env.PUBLIC_URL + "/potterypic.jpg"}
+        alt="aboutImage"
+      />
       <div className="initial-container">
-        <h4 className="center mb-5">Meet our team</h4>
-        <hr className="line" />
-        <h2 className="center mt-5 mb-5">About us</h2>
-        <hr className="line" />
+        <h4 className="short_description center mb-5">Meet our team</h4>
+        <hr className="lin" />
+        <h2 className="short_description center mt-5 mb-5">About us</h2>
+        <hr className="lin" />
         <Modal />
       </div>
       <div className="meet-team">
@@ -119,7 +126,7 @@ function About() {
           this ancient tradition of ceramics.
         </p>
       </div>
-    </>
+    </div>
   );
 }
 

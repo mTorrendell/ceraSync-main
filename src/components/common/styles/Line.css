@@ -6,3 +6,12 @@
   border-color: #514c46;
   background-color: #514c46;
 }
+
+.lin {
+  margin: 20px;
+  border-width: 5px;
+  border-radius: 3px;
+  width: 100%;
+  border-color: #ece4db;
+  background-color: #ece4db;
+}

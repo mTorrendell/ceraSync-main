@@ -3,6 +3,7 @@ import "./styles/About.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrEmail } from "../redux/slices/authSlice";
 import { setIsLogged } from "../redux/slices/authSlice";
+import Header from "../components/common/Header.jsx";
 
 function ProfileUser() {
   const [profile, setProfile] = useState("f");
@@ -20,6 +21,7 @@ function ProfileUser() {
 
   return (
     <>
+      <Header />
       <div className="row ">
         <div className="col-md-7 p-4 m-2 event text-start themeColor">
           <div className="row innerEvent">

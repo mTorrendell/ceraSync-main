@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import About from "./components/About.jsx"
 import Home from "./components/home/Home.jsx"
@@ -10,11 +10,11 @@ import Event from "./components/Event.jsx"
 import ProfileUser from "./components/ProfileUser.jsx"
 import { ProtectedRouteUser } from "./util/ProtectedRoute.jsx"
 
-
 function App() {
+
   return (
     <>
-      <Header />
+  
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>

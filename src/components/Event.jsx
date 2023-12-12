@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import ReactLoading from "react-loading";
 import { getEventById } from "../redux/slices/eventSlice";
 import { formatDateTime } from "../util/TimeConverter";
+import Header from "../components/common/Header.jsx"
+
 
 function Event() {
   const [event, setEvent] = useState(null);
@@ -40,9 +42,10 @@ function Event() {
 
   return event ? (
     <>
+      <Header />
       <div className="row ">
         <div className="col-md-5 p-5 image-container">
-          <div >
+          <div>
             {imageConverted ? (
               <img
                 className="ceramicPhoto"
@@ -71,7 +74,9 @@ function Event() {
             <h5 className="bold col-3 innerEvent d-flex align-items-start">
               When
             </h5>
-            <h5 className="col-9 d-flex align-items-start">{formatDateTime(event.dateTime)}</h5>
+            <h5 className="col-9 d-flex align-items-start">
+              {formatDateTime(event.dateTime)}
+            </h5>
           </div>
 
           <div className="row d-flex ">

@@ -22,6 +22,7 @@ function EventHomeR({ eventObj }) {
       }
     };
     loadImage();
+    navigate('/')
   }, []);
 
   return (

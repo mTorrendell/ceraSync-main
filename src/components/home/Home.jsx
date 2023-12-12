@@ -10,6 +10,7 @@ import EventHomeR from "./EventHomeR";
 import InfoHome from "./InfoHome";
 import Line from "../common/Line";
 import ReactLoading from "react-loading";
+import HeaderHome from "../common/HeaderHome";
 
 import "./styles/Home.css";
 
@@ -27,22 +28,25 @@ function Home() {
 
   const home = () => {
     return (
-      <div id="home-container">
-        <InfoHome />
+      <>
+        <HeaderHome />
+        <div id="home-container">
+          <InfoHome />
 
-        <Line />
+          <Line />
 
-        {events.map((event, i) =>
-          i % 2 === 0 ? (
-            <EventHomeL key={i} eventObj={event} />
-          ) : (
-            <EventHomeR key={i} eventObj={event} />
-          )
-        )}
-        <Line />
-        <Subscription />
-        <Modal />
-      </div>
+          {events.map((event, i) =>
+            i % 2 === 0 ? (
+              <EventHomeL key={i} eventObj={event} />
+            ) : (
+              <EventHomeR key={i} eventObj={event} />
+            )
+          )}
+          <Line />
+          <Subscription />
+          <Modal />
+        </div>
+      </>
     );
   };
 
