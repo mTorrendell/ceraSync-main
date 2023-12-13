@@ -13,6 +13,7 @@ import { subscribe,
 import { TextField } from "@mui/material";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import CSButton from "./common/CSButton";
+import { isEmailValid } from "../util/FormValidators";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -68,9 +69,12 @@ const Subscription = () => {
   const handleSubscribe = async (e) => {
     e.preventDefault();
     try {
-        await dispatch(subscribe( { email: email })).unwrap();
-        setEmail('');
-        
+        if (isEmailValid(email)) {
+            await dispatch(subscribe( { email: email })).unwrap();
+            setEmail('');
+        } else {
+            toast.error("Email is invalid");
+        }
     } catch {
         toast.error("Failed to subscribe");
     }
