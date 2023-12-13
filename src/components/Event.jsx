@@ -8,8 +8,7 @@ import { useDispatch } from "react-redux";
 import ReactLoading from "react-loading";
 import { getEventById } from "../redux/slices/eventSlice";
 import { formatDateTime } from "../util/TimeConverter";
-import Header from "../components/common/Header.jsx"
-
+import Header from "../components/common/Header.jsx";
 
 function Event() {
   const [event, setEvent] = useState(null);

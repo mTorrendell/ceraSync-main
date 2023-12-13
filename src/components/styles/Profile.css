@@ -1,0 +1,41 @@
+.contianer-event {
+  border-color: #9a6269;
+  border-left: 0.9px solid #a96c73;
+  padding: 10px;
+  padding-left: 30px;
+  /* border-bottom: 0.9px solid #a96c73 */
+}
+
+.outer-container {
+  align-content: flex-start;
+  height: fit-content;
+}
+
+.event {
+  height: 100% !important;
+}
+
+.button-see {
+  width: 200px;
+  border-color: #9a6269;
+  border-left: 0.9px solid #a96c73;
+  padding: 10px;
+  width: -moz-fit-content;
+  /* width: fit-content; */
+  border-top: 0.9px solid #a96c73;
+}
+
+.button-see:hover{
+   background-color: #9a626929;
+   cursor:pointer
+}
+
+.cont-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.button-see p {
+  margin: 0;
+}
