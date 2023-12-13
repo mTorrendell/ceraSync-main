@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
-import { addEvent } from "../redux/slices/eventSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import { 
+    addEvent,
+    selectIsError, 
+    selectErrorMsg, 
+    setErrorEvents
+} from "../redux/slices/eventSlice";
+
 import { imageToBase64 } from "../util/ImageConverter";
 import { TextField } from "@mui/material";
 
@@ -81,15 +89,18 @@ function Event() {
     fullDesc:  false,
     imageData: false,
   });
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid]         = useState(false);
   const [isFileValidBool, setIsFileValidBool] = useState(false);
-  const [b64str, setB64str]           = useState(null);
-  const [date, setDate]               = useState("");
-  const [time, setTime]               = useState("");
-  
+  const [b64str, setB64str]                   = useState(null);
+  const [date, setDate]                       = useState("");
+  const [time, setTime]                       = useState("");
+
+  const isError   = useSelector(selectIsError);
+  const errorMsg  = useSelector(selectErrorMsg);
 
   const dispatch = useDispatch();
   const outerTheme = useTheme();
+  const navigate   = useNavigate();
 
   const formatDateTime = () => {
     if (date && time) {
@@ -124,7 +135,7 @@ function Event() {
   };
 
   const handleInputChange = (propName) => (e) => {
-    setEvent((curr) => ( { ...curr, [propName]: e.target.value } ));
+    setEvent(   (curr) => ( { ...curr, [propName]: e.target.value } ));
     setTouchedF((curr) => ( { ...curr, [propName]: true } ))
   };
 
@@ -139,7 +150,18 @@ function Event() {
       isFullDescValid(event.fullDesc) &&
       isFileValidBool
     );
-  }, [event, date, time, isFileValidBool]);
+      
+    if (isError !== undefined) {
+        if (!isError) {
+            toast.success("Event successfully added!");
+            navigate("/");
+        } else {
+            toast.error(`Unable to create event: ${errorMsg}`);
+        }
+        dispatch(setErrorEvents({isError: false, errorMsg:""}));   
+    }
+
+  }, [event, date, time, isFileValidBool, isError, errorMsg]);
 
   const textHT  = (fieldName, length) => `${fieldName} should not be empty and should be no more than ${length} characters`
   const dateHT  = "Date should be in a format of DD/MM/YYYY"

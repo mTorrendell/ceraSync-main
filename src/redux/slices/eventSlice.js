@@ -24,7 +24,7 @@ const initialState = {
     events: [],
     currentUserEvents: [],
     currentEvent: undefined,
-    isError: false,
+    isError: undefined,
     errorMsg: ""
 };
 

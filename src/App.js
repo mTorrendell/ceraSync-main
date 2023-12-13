@@ -9,6 +9,7 @@ import Footer from "./components/common/Footer.jsx"
 import Event from "./components/Event.jsx"
 import ProfileUser from "./components/ProfileUser.jsx"
 import { ProtectedRouteUser } from "./util/ProtectedRoute.jsx"
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/profile" element={<ProfileUser />}></Route>
         </Route>
       </Routes>
+      <ToastContainer />
       <Footer />
     </>
   );
