@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles/Subscription.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const Subscription = () => {
   const [inputValue, setInputValue] = useState("");
@@ -25,8 +26,11 @@ const Subscription = () => {
             aria-describedby="inputGroup-sizing-default"
           />
         </div>
-        <div className="col-12 button">SUBSCRIBE</div>
+        <div className="col-12 button" onClick={() => toast("Out of reach")}>
+          SUBSCRIBE
+        </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

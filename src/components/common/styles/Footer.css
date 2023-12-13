@@ -23,3 +23,12 @@
   color: #e8e3dc;
   font-weight: bold;
 }
+
+.info:hover{
+  cursor: pointer;
+}
+
+
+.Toastify__progress-bar-theme--light {
+  background: #bfaaaa !important;
+}

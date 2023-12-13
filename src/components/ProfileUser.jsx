@@ -4,19 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrEmail } from "../redux/slices/authSlice";
 import { setIsLogged } from "../redux/slices/authSlice";
 import Header from "../components/common/Header.jsx";
+import { selectCurrId, setCurrId } from "../redux/slices/authSlice.js";
 
 function ProfileUser() {
   const [profile, setProfile] = useState("f");
   const isLogged = useSelector(setCurrEmail);
+  const id = useSelector(selectCurrId);
   const dispatch = useDispatch();
 
   const logOut = () => {
     dispatch(setIsLogged(false));
+    dispatch(setCurrId(""));
     localStorage.removeItem("CERASYNC_JWT_TOKEN", "");
   };
 
   useEffect(() => {
     setProfile(isLogged.payload.auth.currEmail);
+
+    console.log(id);
   }, [0]);
 
   return (
