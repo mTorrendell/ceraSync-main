@@ -11,9 +11,9 @@ export function isHostValid(host) {
 } 
 
 export function isDateValid(date) {
-    if (!isDateFormatValid) return false;
+    if (!isDateFormatValid) { return false; }
     const splited = date.split('/');
-    if (splited.some((x) => !isNumber(x))) return false;
+    if (splited.some((x) => !isNumber(x))) { console.log("Some date is invalid"); return false; }
     const [d, m, y] = splited.map(Number);
     return isDayValid(d) && isMonthValid(m) && isYearValid(y) && isDateInFuture(y, m, d);
 }
@@ -27,8 +27,14 @@ export function isTimeValid(time) {
 }
 
 export function isFileValid(file) {
-    if (!file) return false;
-    if (file.type === '.jpeg' || file.type === '.png' ||  file.type === '.svg') return true;
+    if (!file) {console.log("File is null"); return false};
+    if (file.type === 'image/jpeg' || file.type === 'image/png' ||  file.type === 'image/svg' || file.type === 'image/jpg') {
+        console.log("File type is: " + file.type);
+        console.log("File is type correct");
+        return true;
+    }
+    console.log("File type is: " + file.type);
+    console.log("File type is incorrect")
     return false;
 }
 

@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalButton from "./ModalButton";
 import "./styles/About.css";
 import "./ModalButton";
 import LoginModal from "./auth/modalAuth";
 import { selectIsLogged } from "../../redux/slices/authSlice";
 import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsLogged } from "../../redux/slices/authSlice";
 
 const Modal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,6 +14,8 @@ const Modal = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const isLogged = useSelector(selectIsLogged);
+
+  const dispatch = useDispatch();
 
   const login = () => {
     if (!loginOpen) {
@@ -26,6 +29,12 @@ const Modal = () => {
     login();
     closeModal();
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('CERASYNC_JWT_TOKEN') !== null) {
+        dispatch(setIsLogged(true));
+    }
+  }, []);
 
   const menu = () => {
     return (

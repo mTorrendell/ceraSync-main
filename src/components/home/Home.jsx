@@ -2,15 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAllEvents, getAllEvents } from "../../redux/slices/eventSlice";
 
-import Modal from "../menu/Modal";
-import LoginModal from "../menu/auth/modalAuth";
+import Modal        from "../menu/Modal";
 import Subscription from "../Subscription";
-import EventHomeL from "./EventHomeL";
-import EventHomeR from "./EventHomeR";
-import InfoHome from "./InfoHome";
-import Line from "../common/Line";
+import EventHomeL   from "./EventHomeL";
+import EventHomeR   from "./EventHomeR";
+import InfoHome     from "./InfoHome";
+import Line         from "../common/Line";
 import ReactLoading from "react-loading";
-import HeaderHome from "../common/HeaderHome";
+import HeaderHome   from "../common/HeaderHome";
 
 import "./styles/Home.css";
 
@@ -18,7 +17,7 @@ function Home() {
   const dispatch = useDispatch();
   const events = useSelector(selectAllEvents);
   const mounted = useRef(false);
-
+  
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;

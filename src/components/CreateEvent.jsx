@@ -70,25 +70,21 @@ const customTheme = (outerTheme) =>
     },
   });
 
+  const getObjectOfEvent = (value) => {
+    return {
+        title:     value,
+        location:  value,
+        dateTime:  value,
+        host:      value,
+        shortDesc: value,
+        fullDesc:  value,
+        imageData: value,
+    }
+  }
+
 function Event() {
-  const [event, setEvent] = useState({
-    title:     "",
-    location:  "",
-    dateTime:  "",
-    host:      "",
-    shortDesc: "",
-    fullDesc:  "",
-    imageData: "",
-  });
-  const [touchedF, setTouchedF] = useState({
-    title:     false,
-    location:  false,
-    dateTime:  false,
-    host:      false,
-    shortDesc: false,
-    fullDesc:  false,
-    imageData: false,
-  });
+  const [event, setEvent]                     = useState(getObjectOfEvent(""));
+  const [touchedF, setTouchedF]               = useState(getObjectOfEvent(false));
   const [isFormValid, setIsFormValid]         = useState(false);
   const [isFileValidBool, setIsFileValidBool] = useState(false);
   const [b64str, setB64str]                   = useState(null);
@@ -113,11 +109,11 @@ function Event() {
   const handleFileChange = async (event) => {
     try {
       const file = event.target.files[0];
-      setIsFileValidBool(isFileValid(file));
-      if (isFileValidBool) {
+      //setIsFileValidBool(isFileValid(file));
+     // if (isFileValidBool) {
         const base64String = await imageToBase64(file);
         setB64str(base64String);
-      }
+      //}
     } catch (error) {
       console.error("Error handling file change:", error);
     }
@@ -147,18 +143,18 @@ function Event() {
       isTimeValid(time) &&
       isHostValid(event.host) &&
       isShortDescValid(event.shortDesc) &&
-      isFullDescValid(event.fullDesc) &&
-      isFileValidBool
+      isFullDescValid(event.fullDesc)
+      //isFileValidBool
     );
       
     if (isError !== undefined) {
-        if (!isError) {
+        if (isError === false) {
             toast.success("Event successfully added!");
             navigate("/");
         } else {
             toast.error(`Unable to create event: ${errorMsg}`);
         }
-        dispatch(setErrorEvents({isError: false, errorMsg:""}));   
+        dispatch(setErrorEvents({isError: undefined, errorMsg:""}));   
     }
 
   }, [event, date, time, isFileValidBool, isError, errorMsg]);
@@ -284,10 +280,11 @@ function Event() {
                 text="Create"
                 onClick={(e) => {
                   e.preventDefault();
+                  setTouchedF(getObjectOfEvent(true));
                   if (isFormValid) {
                     handleSubmit();
                   } else {
-                    console.log("Input is invalid")
+                    toast.error("Some of the input is invalid")
                   }
                 }}
               />

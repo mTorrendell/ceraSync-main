@@ -95,6 +95,7 @@ const eventSlice = createSlice({
             // getEventById cases
             .addCase(getEventById.fulfilled, (state, action) => {
                 state.currentEvent = action.payload.event;
+                state.isError = false;
             })
             .addCase(getEventById.rejected, (state, action) => {
                 console.log(action.payload);
@@ -105,6 +106,7 @@ const eventSlice = createSlice({
             // addEvent cases
             .addCase(addEvent.fulfilled, (state, action) => {
                 state.events.push(action.payload.event);
+                state.isError = false;
             })
             .addCase(addEvent.rejected, (state, action) => {
                 console.log(action.payload);
