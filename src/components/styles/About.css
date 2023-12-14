@@ -13,6 +13,8 @@ body {
   letter-spacing: 0.06cm;
   line-height: 30px;
   font-size: 15px !important;
+  background-color: #805a5e30;
+  padding: 60px;
 }
 
 .initial-container {
@@ -110,6 +112,9 @@ body {
   object-fit: contain;
 }
 
+.short_description{
+  font-size:30vh
+}
 .about_background {
   width: 100%;
   /* height: 100%; */

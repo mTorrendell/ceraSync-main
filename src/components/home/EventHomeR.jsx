@@ -60,7 +60,7 @@ function EventHomeR({ eventObj }) {
             <h5 className="meta_data">{formatDateTime(eventObj.dateTime)}</h5>
           </div>
         </div>
-        <div className="event_text_container_r">
+        <div className="event_text_container_r m-3">
             <CSButton 
                 text="Check it out" 
                 onClick={() => navigate(`/event/${eventObj.id}`) }

@@ -58,29 +58,44 @@ function ProfileUser() {
             </h5>
             <h5 className="col-9 d-flex align-items-start">{events.length}</h5>
           </div>
-          <div className="col-md-5 p-5 image-container">
-            <h4 className="" onClick={logOut}>
+          <div className="col-md-5 img-cont">
+            <h4 className="logout" onClick={logOut}>
               LOGOUT
             </h4>
           </div>
         </div>
-        <div className="col-md-6 p-4 m-2 ">
+        <div className="col-md-6 p-4 m-2 info-events ">
           {events.map((event, i) => (
-            <div className="contianer-event">
-              <h5 className="p-1">{event.title}</h5>
-              <h5 className="p-1">{event.location}</h5>
-              <h5 className="p-1">{event.host}</h5>
-              <h5 className="p-1">{event.dateTime}</h5>
-              <div className="cont-button">
-                {" "}
-                <p
-                  className="button-see"
-                  onClick={() => navigate(`/event/${event.id}`)}
-                >
-                  See more
-                </p>
+            <>
+              <div>
+                <p className="pt-3">{i + 1}</p>
               </div>
-            </div>
+              <div className="contianer-event">
+                <div className="inner-info">
+                  <div className="inner-inner-info">
+                    <h5 className="p-1">Title: </h5>
+                    <h5 className="p-1">Location: </h5>
+                    <h5 className="p-1">Host: </h5>
+                    <h5 className="p-1">Date: </h5>
+                  </div>
+                  <div>
+                    <h5 className="p-1">{event.title}</h5>
+                    <h5 className="p-1">{event.location}</h5>
+                    <h5 className="p-1">{event.host}</h5>
+                    <h5 className="p-1">{event.dateTime}</h5>
+                  </div>
+                </div>
+                <div className="cont-button">
+                  {" "}
+                  <p
+                    className="button-see"
+                    onClick={() => navigate(`/event/${event.id}`)}
+                  >
+                    See more
+                  </p>
+                </div>
+              </div>
+            </>
           ))}
         </div>
       </div>

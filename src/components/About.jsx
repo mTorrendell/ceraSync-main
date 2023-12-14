@@ -14,7 +14,6 @@ function About() {
         alt="aboutImage"
       />
       <div className="initial-container">
-        <h4 className="short_description center mb-5">Meet our team</h4>
         <hr className="lin" />
         <h2 className="short_description center mt-5 mb-5">About us</h2>
         <hr className="lin" />
@@ -22,7 +21,7 @@ function About() {
       </div>
       <div className="meet-team">
         <h2 className="center mb-5">Meet our team</h2>
-        <div className="row">
+        <div className="row justify-content-center">
           <div className="profile col-md-4">
             <div className="profileImgContainer">
               <a
@@ -72,7 +71,7 @@ function About() {
             <h6>Lilly Wallawitsch</h6>
           </div>
 
-          <div className="profile col-md-6 justify-content-center">
+          <div className="profile col-md-4 justify-content-center">
             <div className="profileImgContainer">
               <a
                 href="https://www.linkedin.com/in/ava-hurst-86b459250/"
@@ -88,7 +87,7 @@ function About() {
             </div>
             <h6>Ava Hurst</h6>
           </div>
-          <div className="profile col-md-6">
+          <div className="profile col-md-4">
             <div className="profileImgContainer">
               <a
                 href="https://www.linkedin.com/in/mercedes-torrendell-748826236/"

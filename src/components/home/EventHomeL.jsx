@@ -55,7 +55,7 @@ function EventHomeL({ eventObj }) {
           </div>
         </div>
 
-        <div className="event_text_container_l">
+        <div className="event_text_container_l m-3">
             <CSButton 
                 text="Check it out" 
                 onClick={() => navigate(`/event/${eventObj.id}`) }
