@@ -35,7 +35,7 @@
   max-width: 90% !important;
   width: auto;
   height: 90%;
-  display: block; 
+  display: block;
   margin: 0 auto;
 }
 
@@ -43,20 +43,39 @@
   padding: 0 5% 5% 5% !important;
 }
 
-.loading{
+.loading {
   overflow-y: hidden !important;
 }
 
 .lineEvent {
-    border-width: 5px;
-    border-radius: 3px;
-    border-color: #514c46;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #514c46;
 }
 
+.event {
+  background-color: #dfd6cbf6;
+  margin: 100px;
+  margin-top:100px !important;
+  border:#a19485 2px solid
+}
 
-
-.contianer-info-event{
+.contianer-info-event {
   display: flex;
   align-items: center;
-  
+}
+
+.event_background {
+  width: 100%;
+  /* height: 100%; */
+  object-fit: cover;
+  filter: brightness(1.2);
+  position: absolute;
+  z-index: -1;
+  opacity: 0.9;
+  top: 0px;
+  /* top: 90px; */
+  /* min-height: 73vh; */
+  /* height: 100vmin; */
+  height: 100%;
 }

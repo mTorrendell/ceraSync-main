@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import ReactLoading from "react-loading";
 import { getEventById } from "../redux/slices/eventSlice";
 import { formatDateTime } from "../util/TimeConverter";
-import Header from "../components/common/Header.jsx";
+import Header from "../components/common/HeaderHome.jsx";
 
 function Event() {
   const [event, setEvent] = useState(null);
@@ -39,31 +39,16 @@ function Event() {
     loadImage();
   }, [event]);
 
-  return event ? (
+  return event && imageConverted ? (
     <>
       <Header />
-      <div className="row ">
-        <div className="col-md-5 p-5 image-container">
-          <div>
-            {imageConverted ? (
-              <img
-                className="ceramicPhoto"
-                src={imageConverted.src}
-                alt="Event"
-              />
-            ) : (
-              <ReactLoading
-                className="m-2 p-5"
-                type={"bubbles"}
-                color={"#B28484"}
-                height={"10%"}
-                width={"10%"}
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="col-md-7 p-4 event text-start themeColor">
+      <img
+        className="event_background"
+        src={imageConverted.src}
+        alt="aboutImage"
+      />
+      <div className="row d-flex justify-content-center">
+        <div className="col-6 p-5 event ev">
           <div className="row innerEvent">
             <h2>{event.title}</h2>
           </div>
@@ -97,7 +82,7 @@ function Event() {
           </div>
         </div>
         <hr className="m-4" />
-        <Subscription />
+        {/* <Subscription /> */}
       </div>
     </>
   ) : (
