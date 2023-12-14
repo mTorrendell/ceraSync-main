@@ -22,7 +22,7 @@ function ProfileUser() {
   const logOut = () => {
     dispatch(setIsLogged(false));
     dispatch(setCurrId(""));
-    localStorage.addItem("CERASYNC_JWT_TOKEN", null);
+    localStorage.removeItem("CERASYNC_JWT_TOKEN", "");
   };
 
   useEffect(() => {

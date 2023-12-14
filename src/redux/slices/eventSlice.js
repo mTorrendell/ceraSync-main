@@ -90,7 +90,6 @@ const eventSlice = createSlice({
                 console.log(action.payload);
                 state.isError = true;
                 state.errorMsg = "Failed to load events";
-                localStorage.addItem('CERASYNC_JWT_TOKEN', null);
             })
 
             // getEventById cases
@@ -114,7 +113,6 @@ const eventSlice = createSlice({
                 console.log(action.payload);
                 state.isError = true;
                 state.errorMsg = "Failed to add events";
-                localStorage.addItem('CERASYNC_JWT_TOKEN', null);
             })
 
             // updateEvent cases
