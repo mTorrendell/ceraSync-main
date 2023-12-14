@@ -5,31 +5,38 @@
 }
 
 .outerContainer{
-  width:40%
+  width:50vmin
 }
+
 #input {
   padding: 5px 10px 5px 10px;
   margin: 20px;
   width: fit-content;
 }
 
-.button {
-  margin-bottom: 30px;
-  margin-top: 10px;
-  background-color: #C4989D;
-  width: fit-content !important;
-  padding: 8px;
-  font-weight: bolder;
-  font-size: 15px;
-  color: #e8e3dc;
-  border-radius: 8%;
+.another-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:2%
+}
+
+.another-button-container{
+    align-items: center;
+    object-fit: cover;
 }
 
 .send-back{
    z-index: -1;
 }
 
-
 .loading{
   overflow-y: hidden !important;
+}
+
+@media (max-width: 767px) {
+    .outerContainer{
+        width:80vmin
+      }
 }

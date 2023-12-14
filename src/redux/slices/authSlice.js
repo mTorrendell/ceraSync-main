@@ -12,23 +12,23 @@ const initialState = {
     errorMsg: ""
 };
 
-export const authenticate = createAsyncThunk("auth_slice/authenticate", async (user) => {
+export const authenticate = createAsyncThunk("auth/authenticate", async (user) => {
     const response = await baseURL.post("/authenticate", user);
     return response.data;
 });
 
-export const register = createAsyncThunk("auth_slice/register", async (user) => {
+export const register = createAsyncThunk("auth/register", async (user) => {
     const response = await baseURL.post("/register", user);
     return response.data;
 });
 
-export const checkEmail = createAsyncThunk("auth_slice/checkEmail", async (user) => {
+export const checkEmail = createAsyncThunk("auth/checkEmail", async (user) => {
     const response = await baseURL.post("/email_check", user);
     return response.data;
 });
 
 const authSlice = createSlice({
-    name: "auth_slice",
+    name: "auth",
     initialState,
     reducers: {
         setIsLogged(state, action) {
@@ -96,11 +96,11 @@ export const {
     setErrorAuth
 } = authSlice.actions;
 
-export const selectIsLogged = (state) => state.auth.isLogged;
+export const selectIsLogged      = (state) => state.auth.isLogged;
 export const selectIsEmailExists = (state) => state.auth.isEmailExists;
-export const selectCurrEmail = (state) => state.auth.currEmail;
-export const selectIsError = (state) => state.auth.isError;
-export const selectCurrId = (state) => state.auth.currId;
-export const selectErrorMsg = (state) => state.auth.errorMsg;
+export const selectCurrEmail     = (state) => state.auth.currEmail;
+export const selectIsError       = (state) => state.auth.isError;
+export const selectCurrId        = (state) => state.auth.currId;
+export const selectErrorMsg      = (state) => state.auth.errorMsg;
 
 export default authSlice.reducer;

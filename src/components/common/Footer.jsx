@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/Footer.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Footer() {
@@ -28,7 +28,6 @@ function Footer() {
         </div>
       </div>
 
-      <ToastContainer />
     </>
   );
 }
