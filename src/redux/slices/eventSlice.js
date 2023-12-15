@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURLPublic = axios.create({ baseURL: "http://cerasync-back-49c53729469a.herokuapp.com/api/events/public" });
-const baseURL = axios.create({ baseURL: "http://cerasync-back-49c53729469a.herokuapp.com/api/events/" });
+const baseURLPublic = axios.create({ baseURL: "https://cerasync-back-49c53729469a.herokuapp.com/api/events/public" });
+const baseURL = axios.create({ baseURL: "https://cerasync-back-49c53729469a.herokuapp.com/api/events/" });
 
 baseURL.interceptors.request.use(
     (config) => {
