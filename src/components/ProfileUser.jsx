@@ -64,7 +64,7 @@ function ProfileUser() {
             </h4>
           </div>
         </div>
-        <div className="col-md-6 p-4 m-2 info-events ">
+        <div className="col-md-5 p-4 m-2 info-events ">
           {events.map((event, i) => (
             <>
               <div>

@@ -3,6 +3,7 @@
   border-left: 0.9px solid #a96c73;
   padding: 10px;
   padding-left: 30px;
+
   /* border-bottom: 0.9px solid #a96c73 */
 }
 .contianer-event:hover {
@@ -13,6 +14,7 @@
   align-content: flex-start;
   height: fit-content;
   min-height: 75vh;
+  padding: 30px;
 }
 
 .event {
@@ -80,5 +82,3 @@
   margin-left: 50px;
   background-color: #a96c7345;
 }
-
-
