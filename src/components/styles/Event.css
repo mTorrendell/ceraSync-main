@@ -56,8 +56,8 @@
 .event {
   background-color: #dfd6cbf6;
   margin: 100px;
-  margin-top:100px !important;
-  border:#a19485 2px solid
+  margin-top: 100px !important;
+  border: #a19485 2px solid;
 }
 
 .contianer-info-event {
@@ -78,4 +78,14 @@
   /* min-height: 73vh; */
   /* height: 100vmin; */
   height: 100%;
+}
+
+.ev {
+  padding: 50px !important;
+}
+
+@media (max-width: 810px) {
+  .ev {
+    padding: 15px !important;
+  }
 }

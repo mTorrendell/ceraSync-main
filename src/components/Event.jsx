@@ -48,7 +48,7 @@ function Event() {
         alt="aboutImage"
       />
       <div className="row d-flex justify-content-center">
-        <div className="col-6 p-5 event ev">
+        <div className="col-6  event ev">
           <div className="row innerEvent">
             <h2>{event.title}</h2>
           </div>
