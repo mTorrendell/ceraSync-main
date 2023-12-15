@@ -41,7 +41,7 @@ function Event() {
 
   return event && imageConverted ? (
     <>
-      <Header />
+      <Header />{" "}
       <img
         className="event_background"
         src={imageConverted.src}
@@ -55,7 +55,7 @@ function Event() {
 
           <hr className="lineEvent p-2" />
           <div className="row d-flex ">
-            <h5 className="bold col-3 innerEvent d-flex align-items-start">
+            <h5 className="bold col-md-3 innerEvent d-flex align-items-start">
               When
             </h5>
             <h5 className="col-9 d-flex align-items-start">
@@ -64,14 +64,14 @@ function Event() {
           </div>
 
           <div className="row d-flex ">
-            <h5 className="bold col-3 innerEvent d-flex align-items-start">
+            <h5 className="bold col-md-3 innerEvent d-flex align-items-start">
               Where
             </h5>
             <h5 className="col-9 d-flex align-items-start">{event.location}</h5>
           </div>
 
           <div className="row d-flex ">
-            <h5 className="bold col-3 innerEvent d-flex align-items-start">
+            <h5 className="bold col-md-3 innerEvent d-flex align-items-start">
               Host
             </h5>
             <h5 className="col-9 d-flex align-items-start">{event.host}</h5>
@@ -81,7 +81,7 @@ function Event() {
             <h5>{event.fullDescription}</h5>
           </div>
         </div>
-        <hr className="m-4" />
+        {/* <hr className="m-4" /> */}
         {/* <Subscription /> */}
       </div>
     </>

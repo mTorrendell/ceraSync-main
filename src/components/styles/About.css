@@ -12,9 +12,9 @@ body {
   margin: 15%;
   letter-spacing: 0.06cm;
   line-height: 30px;
-  font-size: 15px !important;
   background-color: #805a5e30;
   padding: 60px;
+  font-size: 10vh !important;
 }
 
 .initial-container {
@@ -22,7 +22,7 @@ body {
   height: 55vh !important;
 }
 
-.big-container{
+.big-container {
   height: 55vh !important;
 }
 
@@ -112,8 +112,10 @@ body {
   object-fit: contain;
 }
 
-.short_description{
-  font-size:30vh
+.short {
+  font-size: 30vh !important;
+  overflow: hidden;
+  color: #e8e3dc !important;
 }
 .about_background {
   width: 100%;
@@ -127,4 +129,14 @@ body {
 
   min-height: 73vh;
   height: 100vmin;
+}
+
+.meet2 {
+  font-size: 10vh !important;
+}
+
+@media screen and (max-width: 1300px) {
+  .short {
+    font-size: 10vh !important;
+  }
 }

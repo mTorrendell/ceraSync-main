@@ -15,12 +15,12 @@ function About() {
       />
       <div className="initial-container">
         <hr className="lin" />
-        <h2 className="short_description center mt-5 mb-5">About us</h2>
+        <h2 className="short center mt-5 mb-5">About us</h2>
         <hr className="lin" />
         <Modal />
       </div>
       <div className="meet-team">
-        <h2 className="center mb-5">Meet our team</h2>
+        <h2 className="center meet2 mt-5 mb-5">Meet our team</h2>
         <div className="row justify-content-center">
           <div className="profile col-md-4">
             <div className="profileImgContainer">
@@ -36,7 +36,7 @@ function About() {
                 />
               </a>
             </div>
-            <h6>Nikita Vladimirov</h6>
+            <h5>Nikita Vladimirov</h5>
           </div>
           <div className="profile col-md-4">
             <div className="profileImgContainer">
@@ -52,7 +52,7 @@ function About() {
                 />
               </a>
             </div>
-            <h6>Tatenda Mudavanhu</h6>
+            <h5>Tatenda Mudavanhu</h5>
           </div>
           <div className="profile col-md-4">
             <div className="profileImgContainer">
@@ -68,7 +68,7 @@ function About() {
                 />
               </a>
             </div>
-            <h6>Lilly Wallawitsch</h6>
+            <h5>Lilly Wallawitsch</h5>
           </div>
 
           <div className="profile col-md-4 justify-content-center">
@@ -85,7 +85,7 @@ function About() {
                 />
               </a>
             </div>
-            <h6>Ava Hurst</h6>
+            <h5>Ava Hurst</h5>
           </div>
           <div className="profile col-md-4">
             <div className="profileImgContainer">
@@ -101,7 +101,7 @@ function About() {
                 />
               </a>
             </div>
-            <h6>Mercedes Torrendell</h6>
+            <h5>Mercedes Torrendell</h5>
           </div>
         </div>
       </div>

@@ -41,7 +41,7 @@ function ProfileUser() {
     <>
       <Header />
       <div className="row outer-container ">
-        <div className="col-md-5 p-4 m-2 event text-start themeColor">
+        <div className="col-md-5 p-4 event1 text-start themeColor">
           <div className="row innerEvent">
             <h2 className="m-1 mb-5">Welcome to your profile</h2>
           </div>
