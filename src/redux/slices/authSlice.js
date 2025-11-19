@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURL = axios.create({ baseURL: "https://cerasync-back-49c53729469a.herokuapp.com/api/auth" });
+const baseURL = axios.create({ baseURL: "https://cerasync-back.onrender.com/api/auth" });
 
 const initialState = {
     isLogged: false,

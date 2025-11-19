@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURLPublic = axios.create({ baseURL: "https://cerasync-back-49c53729469a.herokuapp.com/api/events/public" });
-const baseURL = axios.create({ baseURL: "https://cerasync-back-49c53729469a.herokuapp.com/api/events/" });
+const baseURLPublic = axios.create({ baseURL: "https://cerasync-back.onrender.com/api/events/public" });
+const baseURL = axios.create({ baseURL: "https://cerasync-back.onrender.com/api/events/" });
 
 baseURL.interceptors.request.use(
     (config) => {
         //localStorage.setItem("CERASYNC_JWT_TOKEN", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlckB0ZXN0LmNvbSIsImlhdCI6MTcwMjA1ODI3NCwiZXhwIjoxNzAyMDYxMTU0fQ.4MaI_aSQqkjHi5pEdWTWKEdWOvVrBkuaw0HyD8IDn7Q");
-        /* 
+        /*
             Uncomment upper string if you want to test the login required acitons
             AND go to postman, make auth req, and paste the response here
         */
@@ -82,7 +82,7 @@ const eventSlice = createSlice({
                 state.errorMsg = "Failed to load events";
             })
 
-            // getEventsByOwnerId  
+            // getEventsByOwnerId
             .addCase(getEventsByOwnerId.fulfilled, (state, action) => {
                 state.currentUserEvents = action.payload.events;
             })
@@ -96,7 +96,7 @@ const eventSlice = createSlice({
             .addCase(getEventById.fulfilled, (state, action) => {
                 state.currentEvent = action.payload.event;
                 state.isError = false;
-                
+
             })
             .addCase(getEventById.rejected, (state, action) => {
                 console.log(action.payload);
