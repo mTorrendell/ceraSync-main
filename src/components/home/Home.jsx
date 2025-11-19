@@ -17,11 +17,12 @@ function Home() {
   const dispatch = useDispatch();
   const events = useSelector(selectAllEvents);
   const mounted = useRef(false);
-  
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;
-      dispatch(getAllEvents());
+      dispatch(getAllEvents()).finally(() => setIsLoading(false));
     }
   }, [dispatch]);
 
@@ -32,12 +33,19 @@ function Home() {
         <div id="home-container">
           <InfoHome />
 
-          {events.map((event, i) =>
-            i % 2 === 0 ? (
-              <EventHomeL key={i} eventObj={event} />
-            ) : (
-              <EventHomeR key={i} eventObj={event} />
+          {events.length > 0 ? (
+            events.map((event, i) =>
+              i % 2 === 0 ? (
+                <EventHomeL key={i} eventObj={event} />
+              ) : (
+                <EventHomeR key={i} eventObj={event} />
+              )
             )
+          ) : (
+            <div className="text-center p-5 m-5">
+              <h2 className="themeColor">No events yet!</h2>
+              <h4 className="themeColor">Be the first to create one.</h4>
+            </div>
           )}
           <Line />
           <Subscription />
@@ -62,7 +70,7 @@ function Home() {
     );
   };
 
-  return events.length !== 0 ? home() : loading();
+  return isLoading ? loading() : home();
 }
 
 export default Home;
